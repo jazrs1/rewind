@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Rewind import check</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&amp;family=Caveat:wght@600;700&amp;family=Atkinson+Hyperlegible:wght@400;700&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#FFB08F}a:hover{color:#F3E9D2}
+</style>
+</helmet>
+<div style="width: 1280px; height: 840px; box-sizing: border-box; background: #1E2B30; color: #F3E9D2; font-family: 'Atkinson Hyperlegible', sans-serif; padding: 36px 64px 40px; display: flex; flex-direction: column; gap: 24px">
+  <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 32px">
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 22px; letter-spacing: -0.5px">Rewind</div>
+      <h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 46px; line-height: 1; letter-spacing: -1.5px">Here's what we found in COP3530</h1>
+      <p style="margin: 0; font-size: 17px; color: #C9C3B3">Check it before we build your practice exams. Fix anything with one tap.</p>
+    </div>
+  </div>
+
+  <div style="display: flex; gap: 32px; flex: 1; min-height: 0">
+    <section style="flex: 0 0 470px; position: relative; background: #CFDCC8; color: #16241C; border-radius: 6px; padding: 20px 48px 20px 22px; display: flex; flex-direction: column; gap: 4px; overflow: hidden">
+      <div style="position: absolute; right: 14px; top: 20px; bottom: 20px; display: flex; flex-direction: column; justify-content: space-between" aria-hidden="true">
+        <sc-for list="{{marks}}" as="m" hint-placeholder-count="14"><div style="width: 16px; height: 6px; background: #16241C"></div></sc-for>
+      </div>
+      <div style="display: flex; justify-content: space-between; border-bottom: 1.5px solid #24573F; padding-bottom: 8px; margin-bottom: 6px; font-size: 13px; color: #24573F"><span style="font-weight: 700">Exams</span><span>Read from the syllabus and Canvas</span></div>
+
+      <div style="display: flex; align-items: center; gap: 14px; min-height: 76px; border-bottom: 1px solid #9DB39F">
+        <span style="width: 40px; height: 22px; flex: none; border-radius: 11px; background: #3A3F42"></span>
+        <div style="flex: 1; display: flex; flex-direction: column; gap: 2px">
+          <span style="font: 600 21px 'Source Serif 4', serif">Exam 1</span>
+          <span style="font-size: 14px; color: #24573F">Already taken, kept for review</span>
+        </div>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 14px; min-height: 76px; border-bottom: 1px solid #9DB39F">
+        <span style="width: 40px; height: 22px; flex: none; border-radius: 11px; background: #3A3F42"></span>
+        <div style="flex: 1; display: flex; flex-direction: column; gap: 2px">
+          <span style="font: 600 21px 'Source Serif 4', serif">Exam 2</span>
+          <span style="font-family: 'Caveat', cursive; font-weight: 700; font-size: 20px; color: #3A3F42">[Date], [time], [Room]</span>
+          <span style="font-size: 13px; color: #24573F">Syllabus, page [N]</span>
+        </div>
+        <a href="#" style="font-size: 14px; color: #24573F">Edit</a>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 14px; min-height: 76px; border-bottom: 1px solid #9DB39F">
+        <span style="width: 40px; height: 22px; flex: none; border-radius: 11px; box-sizing: border-box; border: 1.5px solid #24573F"></span>
+        <div style="flex: 1; display: flex; flex-direction: column; gap: 2px">
+          <span style="font: 600 21px 'Source Serif 4', serif">Final exam</span>
+          <span style="font-size: 14px; color: #9A2E22; font-weight: 700">Date not found in the syllabus</span>
+        </div>
+        <button style="min-height: 44px; padding: 0 14px; border-radius: 8px; border: 1.5px solid #24573F; background: transparent; color: #16241C; font: 700 14px 'Atkinson Hyperlegible', sans-serif">Add date</button>
+      </div>
+
+      <div style="margin-top: auto; font-size: 14px; line-height: 1.5; color: #24573F">A filled oval means the date came from the course itself. Nothing here is guessed.</div>
+    </section>
+
+    <section style="flex: 1; display: flex; flex-direction: column; gap: 10px; min-width: 0">
+      <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 20px; margin-bottom: 2px">Course materials</div>
+
+      <div style="display: flex; align-items: center; gap: 16px; min-height: 60px; padding: 0 16px; border-radius: 10px; background: #2A3A40">
+        <span style="width: 34px; height: 22px; flex: none; border-radius: 4px; background: #3D6FD9" aria-hidden="true"></span>
+        <div style="flex: 1; display: flex; flex-direction: column"><span style="font-weight: 700; font-size: 16px">Lecture slides</span><span style="font-size: 14px; color: #C9C3B3">[N] decks, cited in every answer</span></div>
+        <a href="#" style="font-size: 14px">Fix</a>
+      </div>
+      <div style="display: flex; align-items: center; gap: 16px; min-height: 60px; padding: 0 16px; border-radius: 10px; background: #2A3A40">
+        <span style="width: 34px; height: 22px; flex: none; border-radius: 4px; background: #CFDCC8" aria-hidden="true"></span>
+        <div style="flex: 1; display: flex; flex-direction: column"><span style="font-weight: 700; font-size: 16px">Past exam reviews</span><span style="font-size: 14px; color: #C9C3B3">[N] files, used for the style of each question</span></div>
+        <a href="#" style="font-size: 14px">Fix</a>
+      </div>
+      <div style="display: flex; align-items: center; gap: 16px; min-height: 60px; padding: 0 16px; border-radius: 10px; background: #2A3A40">
+        <span style="width: 34px; height: 22px; flex: none; border-radius: 4px; background: #E9B43C" aria-hidden="true"></span>
+        <div style="flex: 1; display: flex; flex-direction: column"><span style="font-weight: 700; font-size: 16px">Discussion handouts</span><span style="font-size: 14px; color: #C9C3B3">[N] files, used for practice problems</span></div>
+        <a href="#" style="font-size: 14px">Fix</a>
+      </div>
+      <div style="display: flex; align-items: center; gap: 16px; min-height: 60px; padding: 0 16px; border-radius: 10px; background: #2A3A40">
+        <span style="width: 34px; height: 22px; flex: none; border-radius: 4px; background: #F26B3A" aria-hidden="true"></span>
+        <div style="flex: 1; display: flex; flex-direction: column"><span style="font-weight: 700; font-size: 16px">Lecture recordings</span><span style="font-size: 14px; color: #C9C3B3">[N] tapes with transcripts, [N] still blank</span></div>
+        <a href="#" style="font-size: 14px">How to fill</a>
+      </div>
+      <div style="display: flex; align-items: center; gap: 16px; min-height: 60px; padding: 0 16px; border-radius: 10px; background: #2A3A40">
+        <span style="width: 34px; height: 22px; flex: none; border-radius: 4px; background: #7FC8A9" aria-hidden="true"></span>
+        <div style="flex: 1; display: flex; flex-direction: column"><span style="font-weight: 700; font-size: 16px">Syllabus</span><span style="font-size: 14px; color: #C9C3B3">1 file, read for exam dates and coverage</span></div>
+        <a href="#" style="font-size: 14px">Fix</a>
+      </div>
+      <div style="display: flex; align-items: center; gap: 16px; min-height: 52px; padding: 0 16px; border-radius: 10px; border: 1.5px solid #3A474C">
+        <span style="width: 34px; height: 22px; flex: none; border-radius: 4px; background: #3A474C" aria-hidden="true"></span>
+        <div style="flex: 1; font-size: 15px; color: #C9C3B3">Skipped [N] duplicates and images</div>
+        <a href="#" style="font-size: 14px">Show</a>
+      </div>
+
+      <div style="margin-top: auto; display: flex; align-items: center; justify-content: flex-end; gap: 20px">
+        <a href="#" style="font-size: 15px">Review every file</a>
+        <button style="min-height: 58px; padding: 0 28px; border-radius: 10px; border: none; background: #FA4616; color: #1E2B30; font: 700 18px 'Atkinson Hyperlegible', sans-serif">Looks right, build Exam 2 practice</button>
+      </div>
+    </section>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":840}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { marks: Array.from({ length: 14 }, (_, i) => ({ i })) };
+  }
+}
+</script>
+</body>
+</html>

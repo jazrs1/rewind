@@ -1,0 +1,82 @@
+{
+  "exportedAt": "2026-10-23T12:00:00.000Z",
+  "course": {
+    "id": 2002,
+    "name": "Fake Linear Algebra",
+    "course_code": "FAKE2002"
+  },
+  "files": [],
+  "modules": [
+    {
+      "id": 10,
+      "name": "Week 1",
+      "position": 1,
+      "items": [
+        {
+          "id": 1001,
+          "title": "Week 1 materials",
+          "type": "Page",
+          "page_url": "week-1-materials"
+        },
+        {
+          "id": 1002,
+          "title": "Week 1",
+          "type": "SubHeader"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "name": "Exam Review",
+      "position": 2,
+      "items": [
+        {
+          "id": 1101,
+          "title": "Exam 1 prep",
+          "type": "Page",
+          "page_url": "exam-1-prep"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "name": "Practice Problems",
+      "position": 3,
+      "items": [
+        {
+          "id": 1201,
+          "title": "Set A.pdf",
+          "type": "File",
+          "content_id": 305
+        }
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "url": "week-1-materials",
+      "title": "Week 1 materials",
+      "body": "<p>Slides for this week:</p>\n<ul>\n<li><a class=\"instructure_file_link\" title=\"Lecture 1.pdf\" href=\"https://fake.instructure.com/courses/2002/files/301?wrap=1\" data-api-endpoint=\"https://fake.instructure.com/api/v1/courses/2002/files/301\" data-api-returntype=\"File\">Lecture 1.pdf</a></li>\n<li><a href=\"/courses/2002/files/302/download?download_frd=1\">Lecture 1.pptx</a></li>\n<li><a title=\"Course Syllabus.pdf\" href=\"/courses/2002/files/304\">Read this first</a></li>\n<li><a href=\"/courses/2002/files/308?wrap=1\">mystery.pdf</a></li>\n</ul>\n<p><img src=\"/courses/2002/files/303/preview\" alt=\"Week 1 banner\"></p>"
+    },
+    {
+      "url": "exam-1-prep",
+      "title": "Exam 1 prep",
+      "body": "<p>Old exam: <a href=\"/courses/2002/files/306?wrap=1\">Midterm 1 Spring 2024.pdf</a>.\nSlides again: <a href=\"/courses/2002/files/301?wrap=1\">Lecture 1.pdf</a></p>"
+    },
+    {
+      "url": "contacts",
+      "title": "Contacts",
+      "body": "<p>Hours: <a href=\"/courses/2002/files/307\">Office Hours &amp; Contacts.pdf</a></p>"
+    }
+  ],
+  "assignments": [],
+  "announcements": [],
+  "submissions": [],
+  "syllabus_body": null,
+  "errors": [
+    {
+      "endpoint": "/api/v1/courses/2002/files",
+      "status": 401
+    }
+  ]
+}

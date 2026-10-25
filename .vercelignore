@@ -1,0 +1,7 @@
+# Uploads only ever come from scripts/deploy/preview.sh (a clean checkout); this is a second guard.
+.env*
+private
+.cache
+.claude
+node_modules
+.next

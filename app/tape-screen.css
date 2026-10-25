@@ -1,0 +1,197 @@
+/* tape-screen styles (header-transport brief + addendum). Colours only as tokens; motion only on the motion tokens. */
+@theme static {
+  /* The gap between the course tape's stops as they come in along the tape (lib/design/lint.ts knows it). */
+  --stagger-stop: 40ms;
+}
+
+/* --- Course tape (components/course) ------------------------------------------------------------------------ */
+
+/* Desktop: the screen fills the window under the demo header (TapeScreen measures where it starts), one tape
+   in the middle of a calm frame at most 1200 px wide; the side panel scrolls inside if it must. */
+@media (min-width: 1024px) {
+  .tape-screen {
+    height: var(--tape-screen-h, calc(100dvh - var(--demo-header-h, 0px)));
+    min-height: 560px;
+  }
+}
+
+.tape-deck {
+  background: radial-gradient(ellipse at 50% 42%, var(--color-panel-hi) 0%, var(--color-panel) 55%, var(--color-panel-lo) 100%);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.06), 0 18px 40px -24px rgb(0 0 0 / 0.7);
+}
+
+/* Inner panels scroll with a thin themed bar, never the white default. */
+.tape-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-tape-blank-label) transparent;
+}
+.tape-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.tape-scroll::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background: var(--color-tape-blank-label);
+}
+.tape-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* A stop name: at most two lines, then an ellipsis (the full name is the button's name and its tooltip). */
+.tape-clamp {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+/* The stops come in along the tape, one after another, once per screen: a fade with a slight overshoot. */
+@keyframes tape-stop-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.6);
+  }
+}
+.tape-stop-in {
+  animation: tape-stop-in var(--dur-3) var(--ease-settle) calc(var(--i, 0) * var(--stagger-stop)) backwards;
+}
+/* The phone's full-width stop rows rise a little instead of growing. */
+@keyframes tape-stop-rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+li > .tape-stop-in {
+  animation-name: tape-stop-rise;
+}
+
+/* Hover lift (2 px) and press (0.98) on the tape's buttons, stops and route tapes. */
+.tape-lift {
+  transition: translate var(--dur-1) var(--ease-out), scale var(--dur-1) var(--ease-out);
+}
+.tape-lift:not(:disabled):hover {
+  translate: 0 -2px;
+}
+.tape-lift:not(:disabled):active {
+  scale: 0.98;
+}
+
+/* "You are here" steps aside while the tape head is away on the route back. */
+.tape-here {
+  transition: opacity var(--dur-2) var(--ease-out);
+}
+.tape-here[data-away] {
+  opacity: 0;
+}
+
+/* --- Home shelf cassettes (components/home/TapeShelf), in the landing's .cassette style ------------------- */
+.shelf-cassette {
+  position: relative;
+  border-radius: 10px;
+  padding: 18px 12px 10px;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.35), inset 0 -3px 6px rgb(0 0 0 / 0.25), 0 6px 12px -4px rgb(0 0 0 / 0.55);
+}
+.shelf-cassette::before,
+.shelf-cassette::after {
+  /* the two screws */
+  content: "";
+  position: absolute;
+  top: 6px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, var(--color-hub-shine), var(--color-screw) 60%, var(--color-roller) 100%);
+  box-shadow: 0 1px 0 rgb(255 255 255 / 0.25), inset 0 0 0 0.5px rgb(0 0 0 / 0.5);
+}
+.shelf-cassette::before {
+  left: 8px;
+}
+.shelf-cassette::after {
+  right: 8px;
+}
+/* The paper label, set into the shell: a recess around it. */
+.shelf-label {
+  border-radius: 5px;
+  box-shadow: 0 0 0 2px rgb(0 0 0 / 0.18), inset 0 1px 2px rgb(0 0 0 / 0.2);
+}
+/* The window with its two reels. */
+.shelf-window {
+  display: flex;
+  height: 28px;
+  width: 92px;
+  flex: none;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 14px;
+  background: var(--color-deck-sunk);
+  padding: 0 5px;
+  box-shadow: inset 0 2px 3px rgb(0 0 0 / 0.55), 0 0 0 2px rgb(0 0 0 / 0.12);
+}
+.shelf-reel {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--color-deck) 0 3px, var(--color-label) 3.5px 6px, var(--color-ribbon-core) 6.5px);
+  box-shadow: 0 0 0 1px var(--color-ribbon-hi);
+}
+.shelf-reel-big {
+  height: 24px;
+  width: 24px;
+}
+@media (max-width: 1023.98px) {
+  .shelf-window {
+    height: 24px;
+    width: 58px;
+    padding: 0 4px;
+  }
+  .shelf-reel {
+    height: 16px;
+    width: 16px;
+  }
+  .shelf-reel-big {
+    height: 18px;
+    width: 18px;
+  }
+}
+.shelf-blank .shelf-reel {
+  background: radial-gradient(circle, var(--color-deck) 0 3px, var(--color-tape-blank-ink) 3.5px 6px, var(--color-deck-sunk) 6.5px);
+  box-shadow: 0 0 0 1px var(--color-tape-blank-label);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tape-stop-in {
+    animation: none !important;
+  }
+  .tape-lift,
+  .tape-here {
+    transition: none !important;
+  }
+}
+
+/* The stop and route sheets enter with a slight scale and a fade; the "why this stop" tiles rise 40 ms apart.
+   Reduced motion: none. */
+@keyframes sheet-in {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+}
+.sheet-in[open] {
+  animation: sheet-in var(--dur-2) var(--ease-out);
+}
+@keyframes tile-rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+.sheet-in[open] .tile-rise {
+  animation: tile-rise var(--dur-2) var(--ease-settle) calc(var(--dur-1) + var(--i, 0) * var(--stagger-stop)) backwards;
+}
+@media (prefers-reduced-motion: reduce) {
+  .sheet-in[open],
+  .sheet-in[open] .tile-rise {
+    animation: none !important;
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "Rewind Storage Access probe (experiment, T14)",
+  "version": "0.0.1",
+  "description": "Experiment only. Injects a 'Play here' button into a cross-site frame and calls document.requestStorageAccess() from its click.",
+  "content_scripts": [
+    {
+      "matches": ["http://127.0.0.1:4400/frame.html*", "https://zoom.test:4401/frame.html*"],
+      "js": ["content.js"],
+      "all_frames": true,
+      "run_at": "document_idle"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Allow embedded Zoom</title>
+  <style>
+    body { width: 300px; margin: 0; padding: 16px; background: #1E2B30; color: #F3E9D2; font: 14px/1.4 system-ui, sans-serif; }
+    button { width: 100%; min-height: 44px; background: #FA4616; color: #16241C; border: 0; border-radius: 6px; font-weight: 700; cursor: pointer; }
+    pre { white-space: pre-wrap; word-break: break-all; }
+  </style>
+</head>
+<body>
+  <p>Let Rewind play Zoom recordings inside its own page. This adds one exception: Zoom may use its cookies when embedded in Rewind.</p>
+  <button id="allow" type="button">Allow embedded Zoom</button>
+  <pre id="out"></pre>
+  <script src="popup.js"></script>
+</body>
+</html>

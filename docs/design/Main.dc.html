@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Annotated notes direction</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&amp;family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#2B4A9A}a:hover{color:#17203A}
+</style>
+</helmet>
+<div style="width: 1280px; height: 840px; box-sizing: border-box; background: #FBFCFD; color: #17203A; font-family: 'Figtree', sans-serif; display: flex; flex-direction: column">
+  <header style="display: flex; justify-content: space-between; align-items: center; padding: 28px 56px 20px; border-bottom: 1px solid #E3E7EE">
+    <div style="display: flex; flex-direction: column; gap: 4px">
+      <div style="font-size: 17px; font-weight: 700">COP3530 Data Structures</div>
+      <div style="font-size: 14px; color: #55607A">Exam 2 practice, question 4 of 12</div>
+    </div>
+    <div style="display: flex; align-items: center; gap: 12px">
+      <div style="font-size: 14px; color: #55607A">Balanced trees: 3 of 5 right so far</div>
+      <div style="font-size: 14px; font-weight: 600; padding: 8px 14px; border: 1px solid #17203A; border-radius: 999px">Exam 2 in [N] days</div>
+    </div>
+  </header>
+
+  <main style="display: flex; gap: 56px; padding: 40px 56px 48px; flex: 1; min-height: 0">
+    <section style="flex: 1 1 0; display: flex; flex-direction: column; gap: 24px; max-width: 520px">
+      <h1 style="margin: 0; font-family: 'Newsreader', serif; font-weight: 500; font-size: 32px; line-height: 1.25">Insert 20 into this AVL tree. Which rotation restores balance?</h1>
+      <svg width="220" height="130" viewBox="0 0 220 130" role="img" aria-label="AVL tree: 10 at the root, 30 as its right child, 20 inserted as 30's left child">
+        <line x1="60" y1="28" x2="120" y2="68" stroke="#17203A" stroke-width="1.5"></line>
+        <line x1="120" y1="68" x2="80" y2="108" stroke="#17203A" stroke-width="1.5" stroke-dasharray="4 4"></line>
+        <circle cx="60" cy="28" r="20" fill="#FFFFFF" stroke="#17203A" stroke-width="1.5"></circle>
+        <text x="60" y="33" text-anchor="middle" font-size="15" font-family="Figtree" fill="#17203A">10</text>
+        <circle cx="120" cy="68" r="20" fill="#FFFFFF" stroke="#17203A" stroke-width="1.5"></circle>
+        <text x="120" y="73" text-anchor="middle" font-size="15" font-family="Figtree" fill="#17203A">30</text>
+        <circle cx="80" cy="108" r="20" fill="#FFFFFF" stroke="#17203A" stroke-width="1.5" stroke-dasharray="4 4"></circle>
+        <text x="80" y="113" text-anchor="middle" font-size="15" font-family="Figtree" fill="#17203A">20</text>
+      </svg>
+      <div style="display: flex; flex-direction: column; gap: 10px">
+        <button style="display: flex; justify-content: space-between; align-items: center; min-height: 56px; padding: 0 18px; border: 2px solid #C23B2E; border-radius: 28px; background: #FFFFFF; font: 500 17px 'Figtree', sans-serif; color: #17203A; text-align: left">
+          <span>Left rotation at 10</span><span style="font-size: 14px; font-weight: 600; color: #A8301F">Your answer</span>
+        </button>
+        <button style="display: flex; justify-content: space-between; align-items: center; min-height: 56px; padding: 0 18px; border: 1px solid #E3E7EE; border-radius: 10px; background: #F7E98E; font: 600 17px 'Figtree', sans-serif; color: #17203A; text-align: left">
+          <span>Right-left rotation at 10</span><span style="font-size: 14px; font-weight: 600">Correct</span>
+        </button>
+        <button style="display: flex; align-items: center; min-height: 56px; padding: 0 18px; border: 1px solid #E3E7EE; border-radius: 10px; background: #FFFFFF; font: 500 17px 'Figtree', sans-serif; color: #17203A; text-align: left">Right rotation at 30</button>
+        <button style="display: flex; align-items: center; min-height: 56px; padding: 0 18px; border: 1px solid #E3E7EE; border-radius: 10px; background: #FFFFFF; font: 500 17px 'Figtree', sans-serif; color: #17203A; text-align: left">No rotation needed</button>
+      </div>
+      <div style="font-size: 14px; color: #55607A">Based on <a href="#">4 - Balanced Trees.pdf, slide [N]</a></div>
+    </section>
+
+    <section style="flex: 1.25 1 0; display: flex; flex-direction: column; gap: 24px; background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 16px; padding: 32px 36px">
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <h2 style="margin: 0; font-family: 'Newsreader', serif; font-weight: 500; font-size: 28px">Here's where Kapoor explains this</h2>
+        <div style="font-size: 15px; color: #55607A">DSA Fa26 Thursday lecture, 43:40 to 44:20</div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 16px">
+        <button aria-label="Play clip" style="width: 56px; height: 56px; border-radius: 50%; border: none; background: #17203A; display: flex; align-items: center; justify-content: center; flex: none">
+          <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M6 3.5v13l11-6.5z" fill="#FBFCFD"></path></svg>
+        </button>
+        <div style="flex: 1; height: 6px; background: #E3E7EE; border-radius: 3px; display: flex"><div style="width: 30%; background: #17203A; border-radius: 3px"></div></div>
+        <div style="font-size: 15px; color: #55607A">0:12 / 0:40</div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 14px; font-family: 'Newsreader', serif; font-size: 20px; line-height: 1.55">
+        <p style="margin: 0; color: #55607A">[Transcript line just before the explanation]</p>
+        <p style="margin: 0"><span style="background: #F7E98E; box-decoration-break: clone; -webkit-box-decoration-break: clone; padding: 2px 4px">[The lines where he explains the right-left case, highlighted word by word as the clip plays]</span></p>
+        <p style="margin: 0; color: #55607A">[Transcript line just after]</p>
+      </div>
+      <div style="display: flex; gap: 20px; align-items: center; padding-top: 8px; border-top: 1px solid #E3E7EE">
+        <div style="width: 200px; height: 112px; border: 1px solid #E3E7EE; border-radius: 8px; background: #F4F6F9; display: flex; align-items: center; justify-content: center; font-size: 14px; color: #55607A; flex: none">[Slide image]</div>
+        <div style="display: flex; flex-direction: column; gap: 12px">
+          <div style="font-size: 15px">The matching slide from <a href="#">4 - Balanced Trees.pdf</a></div>
+          <div style="display: flex; gap: 12px">
+            <button style="min-height: 44px; padding: 0 18px; border-radius: 10px; border: none; background: #17203A; color: #FBFCFD; font: 600 15px 'Figtree', sans-serif">Try a similar question</button>
+            <button style="min-height: 44px; padding: 0 18px; border-radius: 10px; border: 1px solid #17203A; background: #FFFFFF; color: #17203A; font: 600 15px 'Figtree', sans-serif">Ask a follow-up</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":840}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

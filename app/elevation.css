@@ -1,0 +1,502 @@
+/* ------------------------------------------------------------------------------------------------
+   Elevation: materials (E1) and transport keys (E2), the "molded deck" look John picked (Oct 24).
+   Every colour is a token (@theme below); every motion uses the motion tokens and only transform and opacity.
+   ------------------------------------------------------------------------------------------------ */
+@theme static {
+  /* Deck body: a very subtle vertical gradient on the matte molded plastic */
+  --color-deck-top: #243439;
+  --color-deck-bot: #19262b;
+  /* Charcoal keys with engraved cream glyphs */
+  --color-key-face: #3a4d55;
+  --color-key-face-lo: #2c3e46;
+  --color-key-rim: #5a6f77;
+  --color-key-side: #0b1316;
+  --color-key-well: #0f191d;
+  /* The paper stack under the form, and the form's lighter top edge */
+  --color-paper-lo: #bccab6;
+  --color-paper-hi: #dbe6d5;
+  /* Cream keycaps (brief B): the cap's lit top and shaded foot, its rim, and the engraved glyph */
+  --color-key-cap-hi: #fbf5e6;
+  --color-key-cap-lo: #ddd3bb;
+  --color-key-cap-rim: #b9ae95;
+  --color-key-glyph: #2b3539;
+}
+
+/* --- Paper: a printed form lying on the deck --------------------------------------------------- */
+.paper-form,
+.paper-sheet {
+  --grain: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n' x='0' y='0' width='100%' height='100%'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' seed='7' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .1 0 0 0 0 .2 0 0 0 0 .15 0 0 0 1.4 -.25'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='.12'/></svg>");
+  background-image: var(--grain), linear-gradient(180deg, var(--color-paper-hi), var(--color-paper) 30%, var(--color-paper) 70%, var(--color-paper-lo));
+}
+.paper-form::before,
+.paper-form::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+/* ::before = registration marks in print green; ::after = the printed form line */
+.paper-form::before {
+  inset: 0;
+  opacity: 0.55;
+}
+.paper-form::after {
+  bottom: 7px;
+  left: 30px;
+  font: 700 10px/1 var(--font-sans);
+  letter-spacing: 0.16em;
+  color: var(--color-print);
+  white-space: nowrap;
+}
+@media (min-width: 1024px) {
+  .paper-form::after {
+    left: 48px;
+    bottom: 10px;
+  }
+}
+/* The rewind strip is small: on a phone it has no room for a form line */
+[data-strip-fit].paper-form::after {
+  left: 38px;
+  bottom: 9px;
+}
+@media (max-width: 1023.98px) {
+  [data-strip-fit].paper-form::after {
+    display: none;
+  }
+}
+
+/* Classic Scantron. Corner L-marks, form number bottom left, soft shadow, graphite hatching. */
+.paper-form,
+.paper-sheet {
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.55),
+    0 1px 2px rgb(0 0 0 / 0.4),
+    0 16px 28px -12px rgb(0 0 0 / 0.6);
+}
+.paper-form::before {
+  background:
+    linear-gradient(var(--color-print), var(--color-print)) left 10px top 10px / 14px 1.5px no-repeat,
+    linear-gradient(var(--color-print), var(--color-print)) left 10px top 10px / 1.5px 14px no-repeat,
+    linear-gradient(var(--color-print), var(--color-print)) right 10px top 10px / 14px 1.5px no-repeat,
+    linear-gradient(var(--color-print), var(--color-print)) right 10px top 10px / 1.5px 14px no-repeat,
+    linear-gradient(var(--color-print), var(--color-print)) left 10px bottom 10px / 14px 1.5px no-repeat,
+    linear-gradient(var(--color-print), var(--color-print)) left 10px bottom 10px / 1.5px 14px no-repeat,
+    linear-gradient(var(--color-print), var(--color-print)) right 10px bottom 10px / 14px 1.5px no-repeat,
+    linear-gradient(var(--color-print), var(--color-print)) right 10px bottom 10px / 1.5px 14px no-repeat;
+}
+.paper-form::after {
+  content: "FORM R-3530 · PRACTICE" / "";
+}
+
+
+/* Pencil-filled bubbles: the answer ovals look shaded in by hand, not painted */
+.bubble-pencil {
+  overflow: hidden;
+}
+.bubble-pencil::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.bubble-pencil::after {
+  background:
+    repeating-linear-gradient(-58deg, rgb(255 255 255 / 0.13) 0 1px, transparent 1px 3px),
+    linear-gradient(180deg, rgb(255 255 255 / 0.12), transparent 45%, rgb(0 0 0 / 0.14));
+}
+
+/* --- Deck: matte molded plastic ---------------------------------------------------------------- */
+body {
+  background-image: linear-gradient(180deg, var(--color-deck-top), var(--color-deck-bot));
+  background-repeat: no-repeat;
+  background-size: 100% 100dvh;
+  background-color: var(--color-deck-bot);
+}
+/* An inset panel: a recess in the molding, with a 1 px highlight on its lower lip and a soft inner shadow. */
+.deck-panel {
+  position: relative;
+  background-image: linear-gradient(180deg, var(--color-deck-raised), var(--color-panel));
+  border: 1px solid rgb(0 0 0 / 0.4);
+}
+.deck-panel::before,
+.deck-panel::after {
+  content: "";
+  position: absolute;
+  top: 6px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.deck-panel::before {
+  left: 6px;
+}
+.deck-panel::after {
+  right: 6px;
+}
+.deck-panel {
+  box-shadow:
+    inset 0 2px 8px rgb(0 0 0 / 0.4),
+    inset 0 1px 0 rgb(0 0 0 / 0.25),
+    0 1px 0 rgb(255 255 255 / 0.09);
+}
+/* Two slotted screws */
+.deck-panel::before,
+.deck-panel::after {
+  background:
+    linear-gradient(35deg, transparent 44%, var(--color-key-side) 44% 56%, transparent 56%),
+    radial-gradient(circle at 35% 30%, var(--color-hub-shine), var(--color-screw) 55%, var(--color-roller) 100%);
+  box-shadow: 0 1px 0 rgb(255 255 255 / 0.12), inset 0 0 0 0.5px rgb(0 0 0 / 0.5);
+}
+/* Two Phillips screws */
+
+/* --- Transport (brief B §2): one tape-deck unit -------------------------------------------------
+   The panel has no screws (they read as stray dots); the deck face is a dark tape window (reels and counter as
+   one object) beside a recessed rail of matched keys, both 64 px tall on desktop so their tops and bottoms line up. */
+.transport::before,
+.transport::after {
+  content: none;
+}
+.tape-window,
+.tkeys {
+  background: var(--color-key-well);
+  box-shadow: inset 0 2px 6px rgb(0 0 0 / 0.7), inset 0 -1px 0 rgb(255 255 255 / 0.07), 0 1px 0 rgb(255 255 255 / 0.08);
+}
+/* The counter's digit wheels: one drum per digit (cream figure on near-black, shaded top and bottom so it reads as a
+   cylinder), the separators printed on the plate between them. */
+.counter-plate {
+  color: var(--color-label);
+  background-color: var(--color-key-well);
+  box-shadow: inset 0 1px 3px rgb(0 0 0 / 0.6), 0 1px 0 rgb(255 255 255 / 0.05);
+}
+.counter-plate [data-drum] {
+  display: inline-block;
+  min-width: 0.72em;
+  margin: 0 1px;
+  border-radius: 3px;
+  text-align: center;
+  background-image: linear-gradient(180deg, rgb(0 0 0 / 0.6), rgb(255 255 255 / 0.06) 35%, rgb(255 255 255 / 0.06) 65%, rgb(0 0 0 / 0.6));
+  background-color: var(--color-key-side);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.05);
+}
+.counter-plate [data-sep] {
+  padding: 0 1px;
+  opacity: 0.8;
+}
+
+/* Transport keys. A recessed rail holds the keys. Each key is a slot (the dark side wall and its soft shadow,
+   which stay still) with the button as the key's top: pressing slides the top 3 px down over the wall, so the
+   wall shrinks from 4 px to 1 px and the soft shadow under it fades. A latched key (data-latched) stays down,
+   its orange light lit. Only transform and opacity move, on the motion tokens. */
+.tkeys {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 6px;
+  border-radius: 10px;
+  flex: none;
+}
+.tkey-slot {
+  position: relative;
+  display: block;
+  flex: none;
+  width: 56px;
+  height: 52px;
+}
+.tkey-slot::before {
+  /* the key's side wall: 4 px of it shows under the raised top */
+  content: "";
+  position: absolute;
+  inset: 4px 0 0;
+  border-radius: 6px;
+  background: var(--color-key-side);
+}
+.tkey-slot::after {
+  /* the soft shadow it casts on the rail: fades as the key goes down */
+  content: "";
+  position: absolute;
+  inset: 8px -1px -3px;
+  border-radius: 8px;
+  background: rgb(0 0 0 / 0.55);
+  filter: blur(4px);
+  opacity: 0.8;
+  transition: opacity var(--dur-1) var(--ease-out);
+}
+.tkey {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  height: 48px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  border: 2px solid transparent;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: -0.5px;
+  line-height: 1;
+  cursor: pointer;
+  transform: translateY(0);
+  transition: transform var(--dur-1) var(--ease-out);
+  /* Beats the generic press (scale .98): a key goes down, it doesn't shrink. */
+  scale: 1 !important;
+}
+.tkey:not([data-latched]):hover {
+  transform: translateY(-1px);
+}
+.tkey:active,
+.tkey[data-latched] {
+  transform: translateY(3px);
+}
+.tkey-slot:has(.tkey:active)::after,
+.tkey-slot:has(.tkey[data-latched])::after {
+  opacity: 0.25;
+}
+/* The small orange light over a key's top edge: lit while the key is latched */
+.tkey::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  width: 14px;
+  height: 3px;
+  margin-left: -7px;
+  border-radius: 2px;
+  background: var(--color-action);
+  box-shadow: 0 0 6px var(--color-action);
+  opacity: 0;
+  transition: opacity var(--dur-1) var(--ease-out);
+}
+.tkey[data-latched]::after {
+  opacity: 1;
+}
+.tkey[data-primary]::after {
+  background: var(--color-ink);
+  box-shadow: none;
+}
+.tkey svg {
+  overflow: visible;
+}
+/* Cream keycaps with dark engraved glyphs: cut into the cap, lit on their lower lip */
+.tkey {
+  color: var(--color-key-glyph);
+  border-color: var(--color-key-cap-rim);
+  background-image: linear-gradient(180deg, var(--color-key-cap-hi), var(--color-label) 45%, var(--color-key-cap-lo));
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.6), inset 0 -2px 3px rgb(0 0 0 / 0.18);
+}
+.tkey svg,
+.tkey .tkey-text {
+  filter: drop-shadow(0 1px 0 rgb(255 255 255 / 0.7)) drop-shadow(0 -0.5px 0 rgb(0 0 0 / 0.35));
+}
+.tkey[data-latched]:not([data-primary]) {
+  background-image: linear-gradient(180deg, var(--color-key-cap-lo), var(--color-label-muted));
+  box-shadow: inset 0 3px 5px rgb(0 0 0 / 0.3);
+}
+/* The one primary control while the clip has the stage: the same key, in the action colour. */
+.tkey[data-primary] {
+  background-color: var(--color-action);
+  background-image: linear-gradient(180deg, rgb(255 255 255 / 0.22), transparent 45%, rgb(0 0 0 / 0.12));
+  border-color: rgb(255 255 255 / 0.3);
+  color: var(--color-ink);
+}
+.tkey[data-primary] svg {
+  filter: drop-shadow(0 1px 0 rgb(255 255 255 / 0.35));
+}
+.tkey:focus-visible {
+  outline-offset: 3px;
+}
+.tkey-ph {
+  display: block;
+  height: 48px;
+  width: 100%;
+  border-radius: 6px;
+  background: var(--color-tape-blank);
+}
+@media (prefers-reduced-motion: reduce) {
+  .tkey,
+  .tkey::after,
+  .tkey-slot::after {
+    transition: none !important;
+  }
+}
+
+/* No recording to play: Play and the speed key are disabled (the reason is their title and the transcript panel's alert). */
+/* A key that can't act: the same cream cap, dimmed, its engraving faded, no hover or press. Every such key looks the
+   same, and a key that still acts (Back 10 s moving the transcript) looks like any enabled key, never a lone bright
+   one among grey ones (John, Oct 25). */
+.tkey:disabled {
+  cursor: not-allowed;
+  transform: translateY(0);
+  filter: brightness(0.86) saturate(0.6);
+}
+.tkey:disabled svg,
+.tkey:disabled .tkey-text {
+  opacity: 0.4;
+}
+
+/* Thin themed scrollbars for panels that scroll inside (transcript, tutor): never the white default. */
+.thin-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-tape-blank-label) transparent;
+}
+
+/* --- Button system (fix 9) --------------------------------------------------------------------------
+   Primary: solid fill (print green on paper, orange on the deck). Secondary: a 2 px outline in the world's
+   ink, same size and weight, an 8% tint on hover. Tertiary: bold text with an icon, no underline, 44 px tall.
+   All: 2 px lift on hover, scale .98 on press (the base rule), the focus ring, 45% opacity disabled. The world
+   is the nearest paper surface (.bg-paper), else the deck. Only inline links inside a sentence stay links. */
+@layer components {
+  .btn {
+    position: relative;
+    isolation: isolate;
+    display: inline-flex;
+    min-height: 48px;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    padding: 0 20px;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.15;
+    text-align: center;
+    text-wrap: balance;
+    text-decoration: none;
+    cursor: pointer;
+    transition: translate var(--dur-1) var(--ease-out), scale var(--dur-1) var(--ease-out);
+  }
+  .btn:not(:disabled, [aria-disabled="true"]):hover {
+    translate: 0 -2px;
+  }
+  .btn:disabled,
+  .btn[aria-disabled="true"] {
+    opacity: 0.45;
+    cursor: default;
+  }
+  .btn-lg {
+    min-height: 56px;
+    font-size: 18px;
+  }
+  /* The 8% tint under the label */
+  .btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: 8px;
+    background: currentColor;
+    opacity: 0;
+    transition: opacity var(--dur-1) var(--ease-out);
+  }
+  .btn-secondary {
+    border-color: currentColor;
+    color: var(--color-label);
+  }
+  .btn-secondary:not(:disabled):hover::before {
+    opacity: 0.08;
+  }
+  .btn-primary {
+    background-color: var(--color-action);
+    color: var(--color-ink);
+  }
+  .btn-tertiary {
+    min-height: 44px;
+    padding: 0 8px;
+    border-color: transparent;
+    border-radius: 8px;
+    color: var(--color-peach);
+  }
+  .btn-tertiary:not(:disabled):hover::before {
+    opacity: 0.08;
+  }
+  .btn svg {
+    flex: none;
+  }
+  /* On paper */
+  .bg-paper .btn-primary {
+    background-color: var(--color-print);
+    color: var(--color-paper-pale);
+  }
+  .bg-paper .btn-secondary {
+    color: var(--color-print);
+  }
+  .bg-paper .btn-tertiary {
+    color: var(--color-paper-link);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn,
+  .btn::before,
+  .cassette {
+    transition: none !important;
+  }
+}
+
+/* --- Type floor (E3): body text is never under 14 px on desktop or 15 px on a phone. Source text (data-source), the
+   tape's positioned labels, the slide frame, keycaps and the code in the rewind strip (a miniature of the sheet, stepped
+   down to fit its 340 px column) are the exceptions. ------------------------ */
+@media (min-width: 1024px) {
+  :where(.text-\[13px\], .text-\[13\.5px\]):not([data-source], [data-source] *, section[aria-label="Course tape"] *, [data-slide-panel] *, [data-strip-fit] [data-code], kbd, kbd *) {
+    font-size: 14px;
+  }
+}
+@media (max-width: 1023.98px) {
+  :where(.text-\[13px\], .text-\[13\.5px\], .text-\[14px\], .text-sm):not([data-source], [data-source] *, [data-slide-panel] *, kbd, kbd *) {
+    font-size: 15px;
+  }
+}
+
+/* --- Cassettes: a shell with two screws and a paper label set into it ---------------------------- */
+.cassette {
+  position: relative;
+  display: flex;
+  height: 92px;
+  width: 152px;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 8px;
+  padding-top: 10px;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.35), inset 0 -3px 6px rgb(0 0 0 / 0.25), 0 6px 12px -4px rgb(0 0 0 / 0.55);
+  transition: translate var(--dur-1) var(--ease-out);
+}
+/* Only a cassette that is a link lifts and takes the pointer; any other is a picture and looks like one. */
+.cassette {
+  cursor: default;
+}
+a.cassette {
+  cursor: pointer;
+}
+a.cassette:hover {
+  translate: 0 -2px;
+}
+.cassette::before,
+.cassette::after {
+  /* the two screws */
+  content: "";
+  position: absolute;
+  top: 6px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, var(--color-hub-shine), var(--color-screw) 60%, var(--color-roller) 100%);
+  box-shadow: 0 1px 0 rgb(255 255 255 / 0.25), inset 0 0 0 0.5px rgb(0 0 0 / 0.5);
+}
+.cassette::before {
+  left: 7px;
+}
+.cassette::after {
+  right: 7px;
+}
+.cassette-label {
+  /* set into the shell: a recess around it, a paper strip inside */
+  margin-top: 10px;
+  width: 124px;
+  border-radius: 4px;
+  background: var(--color-label);
+  padding: 4px 8px;
+  text-align: center;
+  line-height: 1.1;
+  box-shadow: 0 0 0 2px rgb(0 0 0 / 0.18), inset 0 1px 2px rgb(0 0 0 / 0.2);
+}

@@ -1,0 +1,211 @@
+{
+  "chrome": "~/Library/Caches/ms-playwright/chromium-1234/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing",
+  "startedAt": "2026-10-23T23:37:03.685Z",
+  "runs": [
+    {
+      "mode": "pref cookie_controls_mode=1",
+      "version": "151.0.7922.34",
+      "extId": "bfagmdjldadmklegknbaiodfdooepiom",
+      "results": [
+        {
+          "pair": "A embedded+port / top+port",
+          "primary": "http://127.0.0.1:4200/*",
+          "secondary": "http://localhost:4100/*",
+          "set": "ok {\"primaryPattern\":\"http://127.0.0.1:4200/*\",\"setting\":\"allow\",\"secondaryPattern\":\"http://localhost:4100/*\"}",
+          "get": {
+            "setting": "allow"
+          },
+          "frame": {
+            "localStorage": "ok",
+            "cookie": "ok",
+            "hasStorageAccess": true
+          }
+        },
+        {
+          "pair": "B any / top+port (like the settings UI site exception)",
+          "primary": "<all_urls>",
+          "secondary": "http://localhost:4100/*",
+          "set": "ok {\"primaryPattern\":\"<all_urls>\",\"setting\":\"allow\",\"secondaryPattern\":\"http://localhost:4100/*\"}",
+          "get": {
+            "setting": "allow"
+          },
+          "frame": {
+            "localStorage": "ok",
+            "cookie": "ok",
+            "hasStorageAccess": true
+          }
+        },
+        {
+          "pair": "C embedded / any",
+          "primary": "http://127.0.0.1:4200/*",
+          "secondary": "<all_urls>",
+          "set": "ok {\"primaryPattern\":\"http://127.0.0.1:4200/*\",\"setting\":\"allow\",\"secondaryPattern\":\"<all_urls>\"}",
+          "get": {
+            "setting": "allow"
+          },
+          "frame": {
+            "localStorage": "ok",
+            "cookie": "ok",
+            "hasStorageAccess": true
+          }
+        },
+        {
+          "pair": "D embedded, no secondary",
+          "primary": "http://127.0.0.1:4200/*",
+          "secondary": null,
+          "set": "ok {\"primaryPattern\":\"http://127.0.0.1:4200/*\",\"setting\":\"allow\"}",
+          "get": {
+            "setting": "allow"
+          },
+          "frame": {
+            "localStorage": "ok",
+            "cookie": "ok",
+            "hasStorageAccess": true
+          }
+        },
+        {
+          "pair": "E reversed: top / embedded",
+          "primary": "http://localhost:4100/*",
+          "secondary": "http://127.0.0.1:4200/*",
+          "set": "ok {\"primaryPattern\":\"http://localhost:4100/*\",\"setting\":\"allow\",\"secondaryPattern\":\"http://127.0.0.1:4200/*\"}",
+          "get": {
+            "setting": "block"
+          },
+          "frame": {
+            "localStorage": "error: SecurityError",
+            "cookie": "not set",
+            "hasStorageAccess": false
+          }
+        },
+        {
+          "pair": "F no ports: embedded host / top host",
+          "primary": "http://127.0.0.1/*",
+          "secondary": "http://localhost/*",
+          "set": "ok {\"primaryPattern\":\"http://127.0.0.1/*\",\"setting\":\"allow\",\"secondaryPattern\":\"http://localhost/*\"}",
+          "get": {
+            "setting": "allow"
+          },
+          "frame": {
+            "localStorage": "ok",
+            "cookie": "ok",
+            "hasStorageAccess": true
+          }
+        }
+      ],
+      "baseline": {
+        "localStorage": "error: SecurityError",
+        "cookie": "not set",
+        "hasStorageAccess": false
+      },
+      "realPair": "ok {\"primaryPattern\":\"https://ufl.zoom.us/*\",\"setting\":\"allow\",\"secondaryPattern\":\"http://localhost:3000/*\"}",
+      "realPairGet": {
+        "setting": "allow"
+      },
+      "settingsScreenshot": "evidence/settings-cookies-0.png",
+      "settingsMentionsLocalhost": 0
+    },
+    {
+      "mode": "pref + --test-third-party-cookie-phaseout",
+      "version": "151.0.7922.34",
+      "extId": "bfagmdjldadmklegknbaiodfdooepiom",
+      "results": [
+        {
+          "pair": "A embedded+port / top+port",
+          "primary": "http://127.0.0.1:4200/*",
+          "secondary": "http://localhost:4100/*",
+          "set": "ok {\"primaryPattern\":\"http://127.0.0.1:4200/*\",\"setting\":\"allow\",\"secondaryPattern\":\"http://localhost:4100/*\"}",
+          "get": {
+            "setting": "allow"
+          },
+          "frame": {
+            "localStorage": "ok",
+            "cookie": "ok",
+            "hasStorageAccess": true
+          }
+        },
+        {
+          "pair": "B any / top+port (like the settings UI site exception)",
+          "primary": "<all_urls>",
+          "secondary": "http://localhost:4100/*",
+          "set": "ok {\"primaryPattern\":\"<all_urls>\",\"setting\":\"allow\",\"secondaryPattern\":\"http://localhost:4100/*\"}",
+          "get": {
+            "setting": "allow"
+          },
+          "frame": {
+            "localStorage": "ok",
+            "cookie": "ok",
+            "hasStorageAccess": true
+          }
+        },
+        {
+          "pair": "C embedded / any",
+          "primary": "http://127.0.0.1:4200/*",
+          "secondary": "<all_urls>",
+          "set": "ok {\"primaryPattern\":\"http://127.0.0.1:4200/*\",\"setting\":\"allow\",\"secondaryPattern\":\"<all_urls>\"}",
+          "get": {
+            "setting": "allow"
+          },
+          "frame": {
+            "localStorage": "ok",
+            "cookie": "ok",
+            "hasStorageAccess": true
+          }
+        },
+        {
+          "pair": "D embedded, no secondary",
+          "primary": "http://127.0.0.1:4200/*",
+          "secondary": null,
+          "set": "ok {\"primaryPattern\":\"http://127.0.0.1:4200/*\",\"setting\":\"allow\"}",
+          "get": {
+            "setting": "allow"
+          },
+          "frame": {
+            "localStorage": "ok",
+            "cookie": "ok",
+            "hasStorageAccess": true
+          }
+        },
+        {
+          "pair": "E reversed: top / embedded",
+          "primary": "http://localhost:4100/*",
+          "secondary": "http://127.0.0.1:4200/*",
+          "set": "ok {\"primaryPattern\":\"http://localhost:4100/*\",\"setting\":\"allow\",\"secondaryPattern\":\"http://127.0.0.1:4200/*\"}",
+          "get": {
+            "setting": "block"
+          },
+          "frame": {
+            "localStorage": "error: SecurityError",
+            "cookie": "not set",
+            "hasStorageAccess": false
+          }
+        },
+        {
+          "pair": "F no ports: embedded host / top host",
+          "primary": "http://127.0.0.1/*",
+          "secondary": "http://localhost/*",
+          "set": "ok {\"primaryPattern\":\"http://127.0.0.1/*\",\"setting\":\"allow\",\"secondaryPattern\":\"http://localhost/*\"}",
+          "get": {
+            "setting": "allow"
+          },
+          "frame": {
+            "localStorage": "ok",
+            "cookie": "ok",
+            "hasStorageAccess": true
+          }
+        }
+      ],
+      "baseline": {
+        "localStorage": "error: SecurityError",
+        "cookie": "not set",
+        "hasStorageAccess": false
+      },
+      "realPair": "ok {\"primaryPattern\":\"https://ufl.zoom.us/*\",\"setting\":\"allow\",\"secondaryPattern\":\"http://localhost:3000/*\"}",
+      "realPairGet": {
+        "setting": "allow"
+      },
+      "settingsScreenshot": "evidence/settings-cookies-1.png",
+      "settingsMentionsLocalhost": 0
+    }
+  ],
+  "finishedAt": "2026-10-23T23:37:11.706Z"
+}

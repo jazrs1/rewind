@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Rewind</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <main class="card">
+    <header class="head">
+      <img src="mark.svg" width="24" height="24" alt="">
+      <div>
+        <h1>Rewind</h1>
+        <p class="sub">Export a course to practice in Rewind</p>
+      </div>
+    </header>
+
+    <section id="state-loading" class="state" aria-live="polite">
+      <p class="muted">Loading your courses…</p>
+    </section>
+
+    <section id="state-empty" class="state empty" hidden>
+      <p class="empty-title" id="empty-title">Open a Canvas course to export it</p>
+      <p class="muted" id="empty-text">Go to your course in Canvas, then click Rewind again.</p>
+      <a id="open-canvas" class="btn btn-secondary" href="https://ufl.instructure.com/" target="_blank" rel="noopener">Go to Canvas</a>
+      <button id="transcript" type="button" class="link" hidden>Export lecture transcript</button>
+    </section>
+
+    <section id="state-pick" class="state" hidden>
+      <p class="label" id="courses-label">Your courses</p>
+      <ul id="courses" class="list" role="listbox" aria-labelledby="courses-label" tabindex="0"></ul>
+      <button id="other-toggle" type="button" class="disclosure" aria-expanded="false" aria-controls="other-courses" hidden>
+        <span class="chev" aria-hidden="true">▸</span> <span id="other-label">Other enrollments</span>
+      </button>
+      <ul id="other-courses" class="list" role="listbox" aria-label="Other enrollments" tabindex="0" hidden></ul>
+    </section>
+
+    <section id="state-progress" class="state" hidden>
+      <p class="label" id="progress-course"></p>
+      <div class="bar" role="progressbar" aria-labelledby="progress-text" aria-valuemin="0" aria-valuemax="100"><div class="fill" id="progress-fill"></div></div>
+      <p class="muted" id="progress-text" aria-live="polite">Starting…</p>
+      <p class="muted small">You can close this popup; the export keeps going.</p>
+    </section>
+
+    <section id="state-done" class="state" hidden>
+      <p class="done-title"><span class="check" aria-hidden="true">✓</span> Saved to Downloads</p>
+      <ul class="files" id="done-files"></ul>
+      <ul class="chips" id="done-counts" aria-label="What was exported"></ul>
+      <ul class="notes" id="done-notes"></ul>
+      <details id="done-details" hidden><summary>Details</summary><ul id="done-details-list"></ul></details>
+      <a id="build-link" class="link" href="https://rewindit.org/extension" target="_blank" rel="noopener">Build practice on rewindit.org</a>
+    </section>
+
+    <section id="state-error" class="state" hidden>
+      <p class="error-title" id="error-text" role="alert"></p>
+      <details id="error-details" hidden><summary>Details</summary><p id="error-details-text"></p></details>
+    </section>
+
+    <button id="export" type="button" class="btn btn-primary" hidden>Export course</button>
+  </main>
+  <script src="courses.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

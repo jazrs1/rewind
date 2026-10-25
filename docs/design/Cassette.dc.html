@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Lecture cassette</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="position: relative; width: 340px; height: 214px; border-radius: 14px; background: {{shell}}; box-sizing: border-box; font-family: 'Caveat', cursive; color: #1E2B30">
+  <div style="position: absolute; left: 8px; top: 8px; width: 8px; height: 8px; border-radius: 50%; background: rgba(0,0,0,0.25)"></div>
+  <div style="position: absolute; right: 8px; top: 8px; width: 8px; height: 8px; border-radius: 50%; background: rgba(0,0,0,0.25)"></div>
+  <div style="position: absolute; left: 8px; bottom: 8px; width: 8px; height: 8px; border-radius: 50%; background: rgba(0,0,0,0.25)"></div>
+  <div style="position: absolute; right: 8px; bottom: 8px; width: 8px; height: 8px; border-radius: 50%; background: rgba(0,0,0,0.25)"></div>
+
+  <div style="position: absolute; left: 22px; top: 18px; width: 296px; height: 122px; border-radius: 6px; background: #F3E9D2; overflow: hidden">
+    <div style="height: 10px; background: {{shell}}; opacity: 0.55"></div>
+    <div style="padding: 4px 14px 0; display: flex; justify-content: space-between; align-items: baseline">
+      <div style="font-size: 27px; font-weight: 700; line-height: 1.1">{{label}}</div>
+      <div style="font-size: 18px; font-weight: 600; color: #4C5A60">{{date}}</div>
+    </div>
+    <div style="position: absolute; left: 70px; top: 64px; width: 156px; height: 46px; border-radius: 23px; background: #1E2B30; display: flex; align-items: center; justify-content: space-between; padding: 0 7px; box-sizing: border-box">
+      <div style="width: 32px; height: 32px; border-radius: 50%; background: #F3E9D2; display: flex; align-items: center; justify-content: center"><div style="width: 14px; height: 14px; border-radius: 50%; border: 3px dashed #1E2B30; box-sizing: border-box"></div></div>
+      <div style="flex: 1; height: 18px; margin: 0 8px; border-radius: 4px; background: #5B3A2A"></div>
+      <div style="width: 32px; height: 32px; border-radius: 50%; background: #F3E9D2; display: flex; align-items: center; justify-content: center"><div style="width: 14px; height: 14px; border-radius: 50%; border: 3px dashed #1E2B30; box-sizing: border-box"></div></div>
+    </div>
+  </div>
+
+  <div style="position: absolute; left: 66px; bottom: 0; width: 208px; height: 46px; background: rgba(0,0,0,0.16); clip-path: polygon(10% 0, 90% 0, 100% 100%, 0 100%)"></div>
+  <div style="position: absolute; left: 116px; bottom: 14px; width: 10px; height: 10px; border-radius: 50%; background: rgba(0,0,0,0.3)"></div>
+  <div style="position: absolute; right: 116px; bottom: 14px; width: 10px; height: 10px; border-radius: 50%; background: rgba(0,0,0,0.3)"></div>
+
+  <sc-if value="{{hasSticker}}" hint-placeholder-val="{{ true }}">
+    <div style="position: absolute; right: 14px; top: 144px; padding: 3px 9px; background: #1E2B30; color: #F3E9D2; font-family: 'Atkinson Hyperlegible', sans-serif; font-size: 12px; font-weight: 700; border-radius: 4px">{{sticker}}</div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"shell":{"editor":"color","default":"#F26B3A","options":["#F26B3A","#3D6FD9","#E9B43C","#7FC8A9"]},"label":{"editor":"text","default":"Mod 5: Heaps"},"date":{"editor":"text","default":"Oct 1"},"sticker":{"editor":"text","default":""},"$preview":{"width":340,"height":214}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const sticker = this.props.sticker ?? '';
+    return {
+      shell: this.props.shell ?? '#F26B3A',
+      label: this.props.label ?? 'Mod 5: Heaps',
+      date: this.props.date ?? 'Oct 1',
+      sticker,
+      hasSticker: sticker.length > 0
+    };
+  }
+}
+</script>
+</body>
+</html>

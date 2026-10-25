@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Rewind landing</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&amp;family=Caveat:wght@600;700&amp;family=Atkinson+Hyperlegible:wght@400;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#FFB08F}a:hover{color:#F3E9D2}
+</style>
+</helmet>
+<div style="width: 1280px; height: 800px; box-sizing: border-box; background: #1E2B30; color: #F3E9D2; font-family: 'Atkinson Hyperlegible', sans-serif; display: flex; align-items: center; padding: 0 96px; gap: 40px; overflow: hidden">
+  <section style="flex: 0 0 500px; display: flex; flex-direction: column; gap: 28px">
+    <h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 132px; line-height: 0.9; letter-spacing: -5px">Rewind</h1>
+    <p style="margin: 0; font-family: 'Caveat', cursive; font-weight: 700; font-size: 38px; line-height: 1.15; color: #FFB08F">Miss a question, hear your professor explain it.</p>
+    <p style="margin: 0; font-size: 18px; line-height: 1.55; color: #C9C3B3; max-width: 440px">Rewind reads your Canvas course and lecture recordings, builds practice exams in your professor's style, and plays the exact moment in lecture you need.</p>
+    <div style="display: flex; gap: 12px; flex-wrap: wrap">
+      <button style="min-height: 56px; padding: 0 26px; border-radius: 10px; border: none; background: #FA4616; color: #1E2B30; font: 700 18px 'Atkinson Hyperlegible', sans-serif">Import from Canvas</button>
+      <button style="min-height: 56px; padding: 0 26px; border-radius: 10px; border: 2px solid #F3E9D2; background: transparent; color: #F3E9D2; font: 700 18px 'Atkinson Hyperlegible', sans-serif">Continue on your phone</button>
+    </div>
+    <div style="font-size: 15px; color: #9FA7A3">Uses your own UF login. Nothing to upload.</div>
+  </section>
+
+  <section style="position: relative; flex: 1; height: 640px">
+    <div style="position: absolute; left: 70px; top: 10px; transform: rotate(-7deg)">
+      <dc-import name="Cassette" shell="#3D6FD9" label="Mod 4: Balanced Trees" date="Fa26" sticker="" hint-size="340px,214px"></dc-import>
+    </div>
+    <div style="position: absolute; left: 300px; top: 120px; transform: rotate(5deg)">
+      <dc-import name="Cassette" shell="#F26B3A" label="Mod 5: Heaps" date="Fa26" sticker="On Exam 2" hint-size="340px,214px"></dc-import>
+    </div>
+    <div style="position: absolute; left: 30px; top: 250px; transform: rotate(3deg)">
+      <dc-import name="Cassette" shell="#E9B43C" label="Mod 6: Sorting" date="Fa26" sticker="" hint-size="340px,214px"></dc-import>
+    </div>
+    <div style="position: absolute; left: 270px; top: 400px; transform: rotate(-4deg)">
+      <dc-import name="Cassette" shell="#7FC8A9" label="Mod 8: Graphs" date="Fa26" sticker="" hint-size="340px,214px"></dc-import>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":800}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

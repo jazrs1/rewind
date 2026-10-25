@@ -1,0 +1,951 @@
+{
+  "chrome": "~/Library/Caches/ms-playwright/chromium-1234/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing",
+  "startedAt": "2026-10-24T00:00:56.197Z",
+  "results": [
+    {
+      "standin": "ip-http",
+      "variant": "A: extension button, no permission pre-granted (a real user would see Chrome's prompt)",
+      "steps": [
+        {
+          "step": "first-party login",
+          "requests": [
+            {
+              "path": "/login",
+              "cookie": false,
+              "secFetchStorageAccess": null
+            },
+            {
+              "path": "/favicon.ico",
+              "cookie": true,
+              "secFetchStorageAccess": null
+            }
+          ]
+        },
+        {
+          "step": "frame load (before click)",
+          "messages": [
+            {
+              "phase": "load",
+              "serverSawCookie": false,
+              "documentCookie": false,
+              "localStorage": "error: SecurityError",
+              "hasStorageAccess": false
+            },
+            {
+              "phase": "load+noGestureRequest",
+              "noGestureRequest": "rejected: NotAllowedError"
+            }
+          ],
+          "requests": [
+            {
+              "path": "/frame.html",
+              "cookie": false,
+              "secFetchStorageAccess": "none"
+            }
+          ]
+        },
+        {
+          "step": "click Play here (+ reload)",
+          "messages": [
+            {
+              "phase": "request",
+              "requestStorageAccess": "rejected: NotAllowedError"
+            }
+          ],
+          "requests": []
+        },
+        {
+          "step": "app page loaded again",
+          "messages": [
+            {
+              "phase": "load",
+              "serverSawCookie": false,
+              "documentCookie": false,
+              "localStorage": "error: SecurityError",
+              "hasStorageAccess": false
+            },
+            {
+              "phase": "load+noGestureRequest",
+              "noGestureRequest": "rejected: NotAllowedError"
+            }
+          ],
+          "requests": [
+            {
+              "path": "/frame.html",
+              "cookie": false,
+              "secFetchStorageAccess": "none"
+            }
+          ]
+        }
+      ],
+      "buttonInjected": true
+    },
+    {
+      "standin": "ip-http",
+      "variant": "B: extension button, storage-access granted for the top origin",
+      "steps": [
+        {
+          "step": "first-party login",
+          "requests": [
+            {
+              "path": "/login",
+              "cookie": false,
+              "secFetchStorageAccess": null
+            },
+            {
+              "path": "/favicon.ico",
+              "cookie": true,
+              "secFetchStorageAccess": null
+            }
+          ]
+        },
+        {
+          "step": "frame load (before click)",
+          "messages": [
+            {
+              "phase": "load",
+              "serverSawCookie": false,
+              "documentCookie": false,
+              "localStorage": "error: SecurityError",
+              "hasStorageAccess": false
+            },
+            {
+              "phase": "load+noGestureRequest",
+              "noGestureRequest": "rejected: NotAllowedError"
+            }
+          ],
+          "requests": [
+            {
+              "path": "/frame.html",
+              "cookie": false,
+              "secFetchStorageAccess": "none"
+            }
+          ]
+        },
+        {
+          "step": "click Play here (+ reload)",
+          "messages": [
+            {
+              "phase": "request",
+              "requestStorageAccess": "rejected: NotAllowedError"
+            }
+          ],
+          "requests": []
+        },
+        {
+          "step": "app page loaded again",
+          "messages": [
+            {
+              "phase": "load",
+              "serverSawCookie": false,
+              "documentCookie": false,
+              "localStorage": "error: SecurityError",
+              "hasStorageAccess": false
+            },
+            {
+              "phase": "load+noGestureRequest",
+              "noGestureRequest": "rejected: NotAllowedError"
+            }
+          ],
+          "requests": [
+            {
+              "path": "/frame.html",
+              "cookie": false,
+              "secFetchStorageAccess": "none"
+            }
+          ]
+        }
+      ],
+      "grant": "ok {\"origin\":\"http://localhost:4300\"}",
+      "buttonInjected": true
+    },
+    {
+      "standin": "ip-http",
+      "variant": "C: extension button, storage-access granted for the frame origin",
+      "steps": [
+        {
+          "step": "first-party login",
+          "requests": [
+            {
+              "path": "/login",
+              "cookie": false,
+              "secFetchStorageAccess": null
+            },
+            {
+              "path": "/favicon.ico",
+              "cookie": true,
+              "secFetchStorageAccess": null
+            }
+          ]
+        },
+        {
+          "step": "frame load (before click)",
+          "messages": [
+            {
+              "phase": "load",
+              "serverSawCookie": false,
+              "documentCookie": false,
+              "localStorage": "error: SecurityError",
+              "hasStorageAccess": false
+            },
+            {
+              "phase": "load+noGestureRequest",
+              "noGestureRequest": "rejected: NotAllowedError"
+            }
+          ],
+          "requests": [
+            {
+              "path": "/frame.html",
+              "cookie": false,
+              "secFetchStorageAccess": "none"
+            }
+          ]
+        },
+        {
+          "step": "click Play here (+ reload)",
+          "messages": [
+            {
+              "phase": "request",
+              "requestStorageAccess": "rejected: NotAllowedError"
+            }
+          ],
+          "requests": []
+        },
+        {
+          "step": "app page loaded again",
+          "messages": [
+            {
+              "phase": "load",
+              "serverSawCookie": false,
+              "documentCookie": false,
+              "localStorage": "error: SecurityError",
+              "hasStorageAccess": false
+            },
+            {
+              "phase": "load+noGestureRequest",
+              "noGestureRequest": "rejected: NotAllowedError"
+            }
+          ],
+          "requests": [
+            {
+              "path": "/frame.html",
+              "cookie": false,
+              "secFetchStorageAccess": "none"
+            }
+          ]
+        }
+      ],
+      "grant": "ok {\"origin\":\"http://127.0.0.1:4400\"}",
+      "buttonInjected": true
+    },
+    {
+      "standin": "ip-http",
+      "variant": "D: page button (main world), no permission pre-granted",
+      "steps": [
+        {
+          "step": "first-party login",
+          "requests": [
+            {
+              "path": "/login",
+              "cookie": false,
+              "secFetchStorageAccess": null
+            },
+            {
+              "path": "/favicon.ico",
+              "cookie": true,
+              "secFetchStorageAccess": null
+            }
+          ]
+        },
+        {
+          "step": "frame load (before click)",
+          "messages": [
+            {
+              "phase": "load",
+              "serverSawCookie": false,
+              "documentCookie": false,
+              "localStorage": "error: SecurityError",
+              "hasStorageAccess": false
+            },
+            {
+              "phase": "load+noGestureRequest",
+              "noGestureRequest": "rejected: NotAllowedError"
+            }
+          ],
+          "requests": [
+            {
+              "path": "/frame.html?mode=page",
+              "cookie": false,
+              "secFetchStorageAccess": "none"
+            }
+          ]
+        },
+        {
+          "step": "click Play here (+ reload)",
+          "messages": [
+            {
+              "phase": "request",
+              "requestStorageAccess": "rejected: NotAllowedError",
+              "by": "page"
+            }
+          ],
+          "requests": []
+        },
+        {
+          "step": "app page loaded again",
+          "messages": [
+            {
+              "phase": "load",
+              "serverSawCookie": false,
+              "documentCookie": false,
+              "localStorage": "error: SecurityError",
+              "hasStorageAccess": false
+            },
+            {
+              "phase": "load+noGestureRequest",
+              "noGestureRequest": "rejected: NotAllowedError"
+            }
+          ],
+          "requests": [
+            {
+              "path": "/frame.html?mode=page",
+              "cookie": false,
+              "secFetchStorageAccess": "none"
+            }
+          ]
+        }
+      ],
+      "buttonInjected": true
+    },
+    {
+      "standin": "ip-http",
+      "variant": "E: page button (main world), granted for the top origin",
+      "steps": [
+        {
+          "step": "first-party login",
+          "requests": [
+            {
+              "path": "/login",
+              "cookie": false,
+              "secFetchStorageAccess": null
+            },
+            {
+              "path": "/favicon.ico",
+              "cookie": true,
+              "secFetchStorageAccess": null
+            }
+          ]
+        },
+        {
+          "step": "frame load (before click)",
+          "messages": [
+            {
+              "phase": "load",
+              "serverSawCookie": false,
+              "documentCookie": false,
+              "localStorage": "error: SecurityError",
+              "hasStorageAccess": false
+            },
+            {
+              "phase": "load+noGestureRequest",
+              "noGestureRequest": "rejected: NotAllowedError"
+            }
+          ],
+          "requests": [
+            {
+              "path": "/frame.html?mode=page",
+              "cookie": false,
+              "secFetchStorageAccess": "none"
+            }
+          ]
+        },
+        {
+          "step": "click Play here (+ reload)",
+          "messages": [
+            {
+              "phase": "request",
+              "requestStorageAccess": "rejected: NotAllowedError",
+              "by": "page"
+            }
+          ],
+          "requests": []
+        },
+        {
+          "step": "app page loaded again",
+          "messages": [
+            {
+              "phase": "load",
+              "serverSawCookie": false,
+              "documentCookie": false,
+              "localStorage": "error: SecurityError",
+              "hasStorageAccess": false
+            },
+            {
+              "phase": "load+noGestureRequest",
+              "noGestureRequest": "rejected: NotAllowedError"
+            }
+          ],
+          "requests": [
+            {
+              "path": "/frame.html?mode=page",
+              "cookie": false,
+              "secFetchStorageAccess": "none"
+            }
+          ]
+        }
+      ],
+      "grant": "ok {\"origin\":\"http://localhost:4300\"}",
+      "buttonInjected": true
+    },
+    {
+      "standin": "ip-http",
+      "variant": "F: page button (main world), granted for the frame origin",
+      "steps": [
+        {
+          "step": "first-party login",
+          "requests": [
+            {
+              "path": "/login",
+              "cookie": false,
+              "secFetchStorageAccess": null
+            },
+            {
+              "path": "/favicon.ico",
+              "cookie": true,
+              "secFetchStorageAccess": null
+            }
+          ]
+        },
+        {
+          "step": "frame load (before click)",
+          "messages": [
+            {
+              "phase": "load",
+              "serverSawCookie": false,
+              "documentCookie": false,
+              "localStorage": "error: SecurityError",
+              "hasStorageAccess": false
+            },
+            {
+              "phase": "load+noGestureRequest",
+              "noGestureRequest": "rejected: NotAllowedError"
+            }
+          ],
+          "requests": [
+            {
+              "path": "/frame.html?mode=page",
+              "cookie": false,
+              "secFetchStorageAccess": "none"
+            }
+          ]
+        },
+        {
+          "step": "click Play here (+ reload)",
+          "messages": [],
+          "requests": []
+        },
+        {
+          "step": "app page loaded again",
+          "messages": [
+            {
+              "phase": "load",
+              "serverSawCookie": false,
+              "documentCookie": false,
+              "localStorage": "error: SecurityError",
+              "hasStorageAccess": false
+            },
+            {
+              "phase": "load+noGestureRequest",
+              "noGestureRequest": "rejected: NotAllowedError"
+            }
+          ],
+          "requests": [
+            {
+              "path": "/frame.html?mode=page",
+              "cookie": false,
+              "secFetchStorageAccess": "none"
+            }
+          ]
+        }
+      ],
+      "grant": "ok {\"origin\":\"http://127.0.0.1:4400\"}",
+      "buttonInjected": true
+    },
+    {
+      "standin": "https-hosts",
+      "variant": "A: extension button, no permission pre-granted (a real user would see Chrome's prompt)",
+      "steps": [
+        {
+          "step": "first-party login",
+          "requests": [
+            {
+              "path": "/login",
+              "cookie": false,
+              "secFetchStorageAccess": null
+            },
+            {
+              "path": "/favicon.ico",
+              "cookie": true,
+              "secFetchStorageAccess": null
+            }
+          ]
+        },
+        {
+          "step": "frame load (before click)",
+          "messages": [
+            {
+              "phase": "load",
+              "serverSawCookie": false,
+              "documentCookie": false,
+              "localStorage": "error: SecurityError",
+              "hasStorageAccess": false
+            },
+            {
+              "phase": "load+noGestureRequest",
+              "noGestureRequest": "rejected: NotAllowedError"
+            }
+          ],
+          "requests": [
+            {
+              "path": "/frame.html",
+              "cookie": false,
+              "secFetchStorageAccess": "none"
+            }
+          ]
+        },
+        {
+          "step": "click Play here (+ reload)",
+          "messages": [
+            {
+              "phase": "request",
+              "requestStorageAccess": "rejected: NotAllowedError"
+            }
+          ],
+          "requests": []
+        },
+        {
+          "step": "app page loaded again",
+          "messages": [
+            {
+              "phase": "load",
+              "serverSawCookie": false,
+              "documentCookie": false,
+              "localStorage": "error: SecurityError",
+              "hasStorageAccess": false
+            },
+            {
+              "phase": "load+noGestureRequest",
+              "noGestureRequest": "rejected: NotAllowedError"
+            }
+          ],
+          "requests": [
+            {
+              "path": "/frame.html",
+              "cookie": false,
+              "secFetchStorageAccess": "none"
+            }
+          ]
+        }
+      ],
+      "buttonInjected": true
+    },
+    {
+      "standin": "https-hosts",
+      "variant": "B: extension button, storage-access granted for the top origin",
+      "steps": [
+        {
+          "step": "first-party login",
+          "requests": [
+            {
+              "path": "/login",
+              "cookie": false,
+              "secFetchStorageAccess": null
+            },
+            {
+              "path": "/favicon.ico",
+              "cookie": true,
+              "secFetchStorageAccess": null
+            }
+          ]
+        },
+        {
+          "step": "frame load (before click)",
+          "messages": [
+            {
+              "phase": "load",
+              "serverSawCookie": false,
+              "documentCookie": false,
+              "localStorage": "error: SecurityError",
+              "hasStorageAccess": false
+            },
+            {
+              "phase": "load+noGestureRequest",
+              "noGestureRequest": "rejected: NotAllowedError"
+            }
+          ],
+          "requests": [
+            {
+              "path": "/frame.html",
+              "cookie": false,
+              "secFetchStorageAccess": "none"
+            }
+          ]
+        },
+        {
+          "step": "click Play here (+ reload)",
+          "messages": [
+            {
+              "phase": "request",
+              "requestStorageAccess": "rejected: NotAllowedError"
+            }
+          ],
+          "requests": []
+        },
+        {
+          "step": "app page loaded again",
+          "messages": [
+            {
+              "phase": "load",
+              "serverSawCookie": false,
+              "documentCookie": false,
+              "localStorage": "error: SecurityError",
+              "hasStorageAccess": false
+            },
+            {
+              "phase": "load+noGestureRequest",
+              "noGestureRequest": "rejected: NotAllowedError"
+            }
+          ],
+          "requests": [
+            {
+              "path": "/frame.html",
+              "cookie": false,
+              "secFetchStorageAccess": "none"
+            }
+          ]
+        }
+      ],
+      "grant": "ok {\"origin\":\"https://app.test:4301\"}",
+      "buttonInjected": true
+    },
+    {
+      "standin": "https-hosts",
+      "variant": "C: extension button, storage-access granted for the frame origin",
+      "steps": [
+        {
+          "step": "first-party login",
+          "requests": [
+            {
+              "path": "/login",
+              "cookie": false,
+              "secFetchStorageAccess": null
+            },
+            {
+              "path": "/favicon.ico",
+              "cookie": true,
+              "secFetchStorageAccess": null
+            }
+          ]
+        },
+        {
+          "step": "frame load (before click)",
+          "messages": [
+            {
+              "phase": "load",
+              "serverSawCookie": false,
+              "documentCookie": false,
+              "localStorage": "error: SecurityError",
+              "hasStorageAccess": false
+            },
+            {
+              "phase": "load+noGestureRequest",
+              "noGestureRequest": "rejected: NotAllowedError"
+            }
+          ],
+          "requests": [
+            {
+              "path": "/frame.html",
+              "cookie": false,
+              "secFetchStorageAccess": "none"
+            }
+          ]
+        },
+        {
+          "step": "click Play here (+ reload)",
+          "messages": [
+            {
+              "phase": "request",
+              "requestStorageAccess": "rejected: NotAllowedError"
+            }
+          ],
+          "requests": []
+        },
+        {
+          "step": "app page loaded again",
+          "messages": [
+            {
+              "phase": "load",
+              "serverSawCookie": false,
+              "documentCookie": false,
+              "localStorage": "error: SecurityError",
+              "hasStorageAccess": false
+            },
+            {
+              "phase": "load+noGestureRequest",
+              "noGestureRequest": "rejected: NotAllowedError"
+            }
+          ],
+          "requests": [
+            {
+              "path": "/frame.html",
+              "cookie": false,
+              "secFetchStorageAccess": "none"
+            }
+          ]
+        }
+      ],
+      "grant": "ok {\"origin\":\"https://zoom.test:4401\"}",
+      "buttonInjected": true
+    },
+    {
+      "standin": "https-hosts",
+      "variant": "D: page button (main world), no permission pre-granted",
+      "steps": [
+        {
+          "step": "first-party login",
+          "requests": [
+            {
+              "path": "/login",
+              "cookie": false,
+              "secFetchStorageAccess": null
+            },
+            {
+              "path": "/favicon.ico",
+              "cookie": true,
+              "secFetchStorageAccess": null
+            }
+          ]
+        },
+        {
+          "step": "frame load (before click)",
+          "messages": [
+            {
+              "phase": "load",
+              "serverSawCookie": false,
+              "documentCookie": false,
+              "localStorage": "error: SecurityError",
+              "hasStorageAccess": false
+            },
+            {
+              "phase": "load+noGestureRequest",
+              "noGestureRequest": "rejected: NotAllowedError"
+            }
+          ],
+          "requests": [
+            {
+              "path": "/frame.html?mode=page",
+              "cookie": false,
+              "secFetchStorageAccess": "none"
+            }
+          ]
+        },
+        {
+          "step": "click Play here (+ reload)",
+          "messages": [
+            {
+              "phase": "request",
+              "requestStorageAccess": "rejected: NotAllowedError",
+              "by": "page"
+            }
+          ],
+          "requests": []
+        },
+        {
+          "step": "app page loaded again",
+          "messages": [
+            {
+              "phase": "load",
+              "serverSawCookie": false,
+              "documentCookie": false,
+              "localStorage": "error: SecurityError",
+              "hasStorageAccess": false
+            },
+            {
+              "phase": "load+noGestureRequest",
+              "noGestureRequest": "rejected: NotAllowedError"
+            }
+          ],
+          "requests": [
+            {
+              "path": "/frame.html?mode=page",
+              "cookie": false,
+              "secFetchStorageAccess": "none"
+            }
+          ]
+        }
+      ],
+      "buttonInjected": true
+    },
+    {
+      "standin": "https-hosts",
+      "variant": "E: page button (main world), granted for the top origin",
+      "steps": [
+        {
+          "step": "first-party login",
+          "requests": [
+            {
+              "path": "/login",
+              "cookie": false,
+              "secFetchStorageAccess": null
+            },
+            {
+              "path": "/favicon.ico",
+              "cookie": true,
+              "secFetchStorageAccess": null
+            }
+          ]
+        },
+        {
+          "step": "frame load (before click)",
+          "messages": [
+            {
+              "phase": "load",
+              "serverSawCookie": false,
+              "documentCookie": false,
+              "localStorage": "error: SecurityError",
+              "hasStorageAccess": false
+            },
+            {
+              "phase": "load+noGestureRequest",
+              "noGestureRequest": "rejected: NotAllowedError"
+            }
+          ],
+          "requests": [
+            {
+              "path": "/frame.html?mode=page",
+              "cookie": false,
+              "secFetchStorageAccess": "none"
+            }
+          ]
+        },
+        {
+          "step": "click Play here (+ reload)",
+          "messages": [
+            {
+              "phase": "request",
+              "requestStorageAccess": "rejected: NotAllowedError",
+              "by": "page"
+            }
+          ],
+          "requests": []
+        },
+        {
+          "step": "app page loaded again",
+          "messages": [
+            {
+              "phase": "load",
+              "serverSawCookie": false,
+              "documentCookie": false,
+              "localStorage": "error: SecurityError",
+              "hasStorageAccess": false
+            },
+            {
+              "phase": "load+noGestureRequest",
+              "noGestureRequest": "rejected: NotAllowedError"
+            }
+          ],
+          "requests": [
+            {
+              "path": "/frame.html?mode=page",
+              "cookie": false,
+              "secFetchStorageAccess": "none"
+            }
+          ]
+        }
+      ],
+      "grant": "ok {\"origin\":\"https://app.test:4301\"}",
+      "buttonInjected": true
+    },
+    {
+      "standin": "https-hosts",
+      "variant": "F: page button (main world), granted for the frame origin",
+      "steps": [
+        {
+          "step": "first-party login",
+          "requests": [
+            {
+              "path": "/login",
+              "cookie": false,
+              "secFetchStorageAccess": null
+            },
+            {
+              "path": "/favicon.ico",
+              "cookie": true,
+              "secFetchStorageAccess": null
+            }
+          ]
+        },
+        {
+          "step": "frame load (before click)",
+          "messages": [
+            {
+              "phase": "load",
+              "serverSawCookie": false,
+              "documentCookie": false,
+              "localStorage": "error: SecurityError",
+              "hasStorageAccess": false
+            },
+            {
+              "phase": "load+noGestureRequest",
+              "noGestureRequest": "rejected: NotAllowedError"
+            }
+          ],
+          "requests": [
+            {
+              "path": "/frame.html?mode=page",
+              "cookie": false,
+              "secFetchStorageAccess": "none"
+            }
+          ]
+        },
+        {
+          "step": "click Play here (+ reload)",
+          "messages": [
+            {
+              "phase": "request",
+              "requestStorageAccess": "rejected: NotAllowedError",
+              "by": "page"
+            }
+          ],
+          "requests": []
+        },
+        {
+          "step": "app page loaded again",
+          "messages": [
+            {
+              "phase": "load",
+              "serverSawCookie": false,
+              "documentCookie": false,
+              "localStorage": "error: SecurityError",
+              "hasStorageAccess": false
+            },
+            {
+              "phase": "load+noGestureRequest",
+              "noGestureRequest": "rejected: NotAllowedError"
+            }
+          ],
+          "requests": [
+            {
+              "path": "/frame.html?mode=page",
+              "cookie": false,
+              "secFetchStorageAccess": "none"
+            }
+          ]
+        }
+      ],
+      "grant": "ok {\"origin\":\"https://zoom.test:4401\"}",
+      "buttonInjected": true
+    }
+  ],
+  "finishedAt": "2026-10-24T00:03:06.276Z"
+}

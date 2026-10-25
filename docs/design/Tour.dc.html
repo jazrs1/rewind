@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Rewind screens walkthrough</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&amp;family=Atkinson+Hyperlegible:wght@400;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#11191C}
+</style>
+</helmet>
+<div tabIndex="0" onKeyDown="{{keyDown}}" onTouchStart="{{touchStart}}" onTouchMove="{{touchMove}}" onTouchEnd="{{touchEnd}}" onWheel="{{wheel}}" aria-label="Rewind screens. Arrow keys or swipe move between screens; plus and minus zoom, 0 fits." style="min-height: 100vh; box-sizing: border-box; background: #11191C; color: #F3E9D2; font-family: 'Atkinson Hyperlegible', sans-serif; display: flex; flex-direction: column; outline: none">
+  <header style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 20px">
+    <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
+      <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 22px; letter-spacing: -0.5px">{{current.title}}</div>
+      <div style="font-size: 14px; color: #9FA7A3">{{current.note}}</div>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px">
+      <div role="group" aria-label="Zoom" style="display: flex; align-items: center; gap: 4px; padding: 2px; border-radius: 12px; border: 2px solid #56636A; margin-right: 6px">
+        <button aria-label="Zoom out" onClick="{{zoomOut}}" style="width: 40px; height: 40px; border-radius: 9px; border: none; background: transparent; color: #F3E9D2; font: 700 22px 'Atkinson Hyperlegible', sans-serif">−</button>
+        <button aria-label="Fit to screen" onClick="{{zoomFit}}" style="min-width: 64px; height: 40px; border-radius: 9px; border: none; background: {{zoomBg}}; color: #F3E9D2; font: 700 14px 'Atkinson Hyperlegible', sans-serif">{{zoomLabel}}</button>
+        <button aria-label="Zoom in" onClick="{{zoomIn}}" style="width: 40px; height: 40px; border-radius: 9px; border: none; background: transparent; color: #F3E9D2; font: 700 22px 'Atkinson Hyperlegible', sans-serif">+</button>
+      </div>
+      <button aria-label="Previous screen" onClick="{{prev}}" style="width: 44px; height: 44px; border-radius: 10px; border: 2px solid #F3E9D2; background: transparent; display: flex; align-items: center; justify-content: center">
+        <svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M12 4l-6 6 6 6" fill="none" stroke="#F3E9D2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      </button>
+      <div style="font-size: 15px; min-width: 56px; text-align: center">{{position}}</div>
+      <button aria-label="Next screen" onClick="{{next}}" style="width: 44px; height: 44px; border-radius: 10px; border: none; background: #FA4616; display: flex; align-items: center; justify-content: center">
+        <svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M8 4l6 6-6 6" fill="none" stroke="#1E2B30" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      </button>
+    </div>
+  </header>
+
+  <div style="flex: 1; display: flex; align-items: center; justify-content: center; padding: 0 16px; min-height: 0">
+    <div style="width: {{box.vw}}px; height: {{box.vh}}px; overflow: {{box.ov}}; border-radius: 10px; flex: none; overscroll-behavior: contain">
+      <div style="width: {{box.zw}}px; height: {{box.zh}}px; overflow: hidden">
+      <div style="width: {{box.w}}px; height: {{box.h}}px; transform: scale({{box.k}}); transform-origin: top left">
+        <sc-if value="{{show.s0}}" hint-placeholder-val="{{ true }}"><dc-import name="Rewind" hint-size="1280px,800px"></dc-import></sc-if>
+        <sc-if value="{{show.s1}}" hint-placeholder-val="{{ false }}"><dc-import name="DesktopImport" hint-size="1280px,840px"></dc-import></sc-if>
+        <sc-if value="{{show.s2}}" hint-placeholder-val="{{ false }}"><dc-import name="DesktopHome" hint-size="1280px,840px"></dc-import></sc-if>
+        <sc-if value="{{show.s3}}" hint-placeholder-val="{{ false }}"><dc-import name="DesktopPractice" hint-size="1280px,840px"></dc-import></sc-if>
+        <sc-if value="{{show.s4}}" hint-placeholder-val="{{ false }}"><dc-import name="RewindMissed" hint-size="1280px,840px"></dc-import></sc-if>
+        <sc-if value="{{show.s5}}" hint-placeholder-val="{{ false }}"><dc-import name="PhoneHome" hint-size="390px,844px"></dc-import></sc-if>
+        <sc-if value="{{show.s6}}" hint-placeholder-val="{{ false }}"><dc-import name="PhonePractice" hint-size="390px,844px"></dc-import></sc-if>
+        <sc-if value="{{show.s7}}" hint-placeholder-val="{{ false }}"><dc-import name="DesktopCheatSheet" hint-size="1280px,840px"></dc-import></sc-if>
+        <sc-if value="{{show.s8}}" hint-placeholder-val="{{ false }}"><dc-import name="PhoneRewind" hint-size="390px,844px"></dc-import></sc-if>
+        <sc-if value="{{show.s9}}" hint-placeholder-val="{{ false }}"><dc-import name="PhoneRecord" hint-size="390px,844px"></dc-import></sc-if>
+        <sc-if value="{{show.s10}}" hint-placeholder-val="{{ false }}"><dc-import name="PhoneReading" hint-size="390px,844px"></dc-import></sc-if>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <nav aria-label="All screens" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; padding: 16px 20px 20px">
+    <sc-for list="{{slides}}" as="s" hint-placeholder-count="11">
+      <button aria-label="{{s.title}}" onClick="{{s.go}}" style="min-width: 44px; min-height: 44px; padding: 0 12px; border-radius: 22px; border: 2px solid {{s.border}}; background: {{s.bg}}; color: {{s.fg}}; font: 700 13px 'Atkinson Hyperlegible', sans-serif">{{s.short}}</button>
+    </sc-for>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { i: 0, vw: 1440, vh: 900, z: 1 };
+    this.slides = [
+      { title: 'Landing', short: 'Landing', note: 'Desktop. Every lecture is a tape.', w: 1280, h: 800 },
+      { title: 'Import check', short: 'Import', note: 'Desktop. What we found in the course, with honest gaps.', w: 1280, h: 840 },
+      { title: 'Course home', short: 'Home', note: 'Desktop. Exam card on Scantron paper, tapes on the deck.', w: 1280, h: 840 },
+      { title: 'Practice question', short: 'Practice', note: 'Desktop. The paper world: one question, Scantron ovals.', w: 1280, h: 840 },
+      { title: 'Missed question: rewind', short: 'Rewind', note: 'Desktop. Paper strip, then the slide, clip and tutor.', w: 1280, h: 840 },
+      { title: 'Course home', short: 'Phone home', note: 'Phone, 390 px wide.', w: 390, h: 844 },
+      { title: 'Practice question', short: 'Phone practice', note: 'Phone, 390 px wide.', w: 390, h: 844 },
+      { title: 'Plan your notes sheet', short: 'Notes sheet', note: 'Desktop. Plans a handwritten notes sheet from your weakest topics, then checks it.', w: 1280, h: 840 },
+      { title: 'Missed question: rewind', short: 'Phone rewind', note: 'Phone, 390 px wide.', w: 390, h: 844 },
+      { title: 'Record a lecture', short: 'Record', note: 'Phone. For courses without recordings: the student makes the tape.', w: 390, h: 844 },
+      { title: 'Missed, no recording yet', short: 'No tape', note: 'Phone. Falls back to slide notes and the assigned reading.', w: 390, h: 844 }
+    ];
+    this.touchX = null;
+    this.pinch = null;
+  }
+  componentDidMount() {
+    this.onResize = () => this.setState({ vw: window.innerWidth, vh: window.innerHeight });
+    window.addEventListener('resize', this.onResize);
+    this.onResize();
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.onResize);
+  }
+  go(i) {
+    const n = this.slides.length;
+    this.setState({ i: (i + n) % n, z: 1 });
+  }
+  zoomTo(z) {
+    this.setState({ z: Math.round(Math.min(4, Math.max(1, z)) * 100) / 100 });
+  }
+  renderVals() {
+    const i = this.state.i;
+    const cur = this.slides[i];
+    const availW = Math.max(200, this.state.vw - 32);
+    const availH = Math.max(240, this.state.vh - 190);
+    const k = Math.min(1, availW / cur.w, availH / cur.h);
+    const z = this.state.z;
+    const cw = cur.w * k, ch = cur.h * k;
+    const zoomed = z > 1;
+    const show = {};
+    this.slides.forEach((s, j) => { show['s' + j] = j === i; });
+    return {
+      current: cur,
+      position: (i + 1) + ' of ' + this.slides.length,
+      box: { w: cur.w, h: cur.h, k: (k * z).toFixed(4), zw: Math.round(cw * z), zh: Math.round(ch * z), vw: Math.round(Math.min(availW, cw * z)), vh: Math.round(Math.min(availH, ch * z)), ov: zoomed ? 'auto' : 'hidden' },
+      zoomLabel: zoomed ? Math.round(z * 100) + '%' : 'Fit',
+      zoomBg: zoomed ? '#2A3A40' : 'transparent',
+      zoomIn: () => this.zoomTo(z * 1.25),
+      zoomOut: () => this.zoomTo(z / 1.25),
+      zoomFit: () => this.zoomTo(1),
+      wheel: (e) => {
+        if (!e.ctrlKey && !e.metaKey) return;
+        e.preventDefault();
+        this.zoomTo(z * (e.deltaY < 0 ? 1.1 : 1 / 1.1));
+      },
+      show,
+      prev: () => this.go(i - 1),
+      next: () => this.go(i + 1),
+      keyDown: (e) => {
+        if (e.key === 'ArrowRight') { e.preventDefault(); this.go(i + 1); }
+        if (e.key === 'ArrowLeft') { e.preventDefault(); this.go(i - 1); }
+        if (e.key === '+' || e.key === '=') { e.preventDefault(); this.zoomTo(z * 1.25); }
+        if (e.key === '-') { e.preventDefault(); this.zoomTo(z / 1.25); }
+        if (e.key === '0') { e.preventDefault(); this.zoomTo(1); }
+      },
+      touchStart: (e) => {
+        const t = e.touches || [];
+        if (t.length === 2) {
+          this.pinch = { d: Math.hypot(t[0].clientX - t[1].clientX, t[0].clientY - t[1].clientY), z };
+          this.touchX = null;
+        } else {
+          this.touchX = !zoomed && t[0] ? t[0].clientX : null;
+        }
+      },
+      touchMove: (e) => {
+        const t = e.touches || [];
+        if (this.pinch && t.length === 2) {
+          const d = Math.hypot(t[0].clientX - t[1].clientX, t[0].clientY - t[1].clientY);
+          this.zoomTo(this.pinch.z * d / this.pinch.d);
+        }
+      },
+      touchEnd: (e) => {
+        if (this.pinch && (!e.touches || e.touches.length < 2)) { this.pinch = null; return; }
+        if (this.touchX === null || !e.changedTouches || !e.changedTouches[0]) return;
+        const dx = e.changedTouches[0].clientX - this.touchX;
+        this.touchX = null;
+        if (dx < -50) this.go(i + 1);
+        if (dx > 50) this.go(i - 1);
+      },
+      slides: this.slides.map((s, j) => ({
+        title: s.title + ', ' + s.note,
+        short: s.short,
+        go: () => this.go(j),
+        bg: j === i ? '#F3E9D2' : 'transparent',
+        fg: j === i ? '#1E2B30' : '#F3E9D2',
+        border: j === i ? '#F3E9D2' : '#56636A'
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

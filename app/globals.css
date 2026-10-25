@@ -1,0 +1,588 @@
+@import "tailwindcss";
+@import "./elevation.css";
+@import "./header.css";
+@import "./tape-screen.css";
+
+/* Design tokens from docs/BRIEF.md. Tailwind v4 reads its config from @theme:
+   each --color-x becomes bg-x / text-x / border-x, each --font-x becomes font-x. */
+/* Course tape colours (CourseTape mockup) used in SVG and inline gradients as var(--color-*), so they are
+   emitted even when no utility class uses them. */
+@theme static {
+  /* Motion tokens (design polish A; lib/motion.ts holds the same values for JS-driven motion). Only
+     transform, opacity, clip-path and stroke-dashoffset animate. */
+  --dur-1: 150ms;
+  --dur-2: 200ms;
+  --dur-3: 320ms;
+  --dur-rewind: 900ms;
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-settle: cubic-bezier(0.2, 0.9, 0.3, 1.15);
+  /* Loops that run only while something is happening (reels while playing, shimmer while loading). */
+  --dur-loop-reel: 2400ms;
+  /* The gap between things that arrive one after another (grading buttons, tapes dropping, tape stops). */
+  --stagger: 60ms;
+  /* The study session's one entrance: the rail's topics and the first message, 40 ms apart. */
+  --stagger-entrance: 40ms;
+  --dur-loop-shimmer: 1500ms;
+  /* Tailwind's transition utilities default to the tokens (duration-150 is --dur-1). */
+  --default-transition-duration: var(--dur-1);
+  --default-transition-timing-function: var(--ease-out);
+
+  --color-panel-hi: #2c3d45;
+  --color-panel: #22323a;
+  --color-panel-lo: #1a262b;
+  --color-ribbon-hi: #6e4934;
+  --color-ribbon-core: #3b2519;
+  --color-ribbon-sheen: #7e5239;
+  --color-ribbon-edge: #d2a684;
+  --color-reel-groove: #5e3d2b;
+  --color-reel-groove-dim: #4a3428;
+  --color-roller: #26363d;
+  --color-roller-rim: #3e5158;
+  --color-roller-groove: #2f4047;
+  --color-hub: #8f9a9e;
+  --color-hub-shine: #c9ced0;
+  --color-screw: #7d878b;
+  --color-head-hi: #dde2e4;
+  --color-head-mid: #9aa4a8;
+  --color-head-lo: #6e787c;
+  /* Stop names still ahead of the tape head */
+  --color-ahead: #8a9497;
+  /* The student's pencil mark in an oval: its graphite, the scribble's darker and lighter strokes */
+  --color-pencil: #3b4043;
+  --color-pencil-dark: #2a2e30;
+  --color-pencil-light: #62686c;
+  /* Drop shadow under the tape road */
+  --color-shadow: #000000;
+}
+
+@theme {
+  /* Tape deck */
+  --color-deck: #1e2b30;
+  --color-deck-raised: #2a3a40;
+  /* The course sidebar on desktop (DesktopHome mockup) */
+  --color-deck-sunk: #172226;
+  --color-label: #f3e9d2;
+  --color-label-muted: #c9c3b3;
+  /* Links and handwriting on the deck */
+  --color-peach: #ffb08f;
+  /* Outlines of secondary controls on the deck */
+  /* Lightened from the mockups' #56636a, which is 1.9:1 on deck-raised; borders need 3:1. */
+  --color-deck-line: #808d93;
+  /* The slide frame beside the clip */
+  --color-slide: #e4dfd3;
+  --color-slide-ink: #4c5a60;
+  --color-slide-link: #1f4e8c;
+
+  /* Paper (Scantron) */
+  --color-paper: #cfdcc8;
+  --color-print: #24573f;
+  --color-ink: #16241c;
+  --color-graphite: #3a3f42;
+  --color-red-pen: #9a2e22;
+  /* Paper details from the mockups: answer rules, links, pale text on print-green buttons */
+  --color-paper-rule: #9db39f;
+  --color-paper-link: #1f4d38;
+  --color-paper-link-line: #6e8f78;
+  --color-paper-pale: #e8f0e3;
+  /* Transcript lines outside the current one */
+  --color-label-faint: #9fa7a3;
+
+  /* The one primary button per screen on the deck, with dark text */
+  --color-action: #fa4616;
+
+  /* Tape shells, one per module in order; blank for a missing tape */
+  --color-tape-1: #3d6fd9;
+  --color-tape-2: #f26b3a;
+  --color-tape-3: #e9b43c;
+  --color-tape-4: #7fc8a9;
+  --color-tape-blank: #3a474c;
+  /* A blank tape's label and its text; the muted text on a tape's paper label (Home mockups) */
+  --color-tape-blank-label: #56636a;
+  --color-tape-blank-ink: #e3e6e4;
+  /* The tutor panel (Tutor mockups): its body, the hairlines inside it, and the "From your course" line */
+  --color-tutor: #1e2b30;
+  --color-tutor-line: #34464d;
+  --color-grounded: #9fc3a8;
+  /* The chat (tutor panel and study session), as John set it. The tutor's messages are cream paper on the panel (12:1)
+     with ink text (13.4:1) and "From your course" in print green (6.9:1); the student's are a deck fill with a cream
+     border (the border carries the edge: 12:1 on the panel) and cream text (8.8:1); the composer is a dark well with a
+     line; the conversation's thin scrollbar thumb, no track. Question cards in the chat stay paper green. */
+  --color-tutor-bubble: #f3e9d2;
+  --color-tutor-bubble-ink: #16241c;
+  --color-tutor-student: #f3e9d2;
+  --color-tutor-student-fill: #2f4148;
+  --color-tutor-composer: #0f171a;
+  --color-tutor-composer-line: #56636a;
+  --color-tutor-scroll: #56636a;
+  --color-tape-label-ink: #4c5a60;
+  /* The brown tape wound between a cassette's reels (Cassette mockup) */
+  --color-tape-ribbon: #5b3a2a;
+
+
+  --font-display: var(--font-bricolage), system-ui, sans-serif;
+  --font-serif: var(--font-source-serif), Georgia, serif;
+  --font-hand: var(--font-caveat), cursive;
+  --font-sans: var(--font-atkinson), system-ui, sans-serif;
+
+  /* Hover lift and entrance curve from the motion rules (the settle token) */
+  --ease-overshoot: var(--ease-settle);
+}
+
+/* Focus rings (design rules): every focusable thing shows a 2 px ring 2 px out when reached by keyboard:
+   label cream on the deck, print green on paper (any .bg-paper surface). Components may set their own
+   ring with utilities, which win over this base layer. */
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--color-label);
+    outline-offset: 2px;
+  }
+  .bg-paper :focus-visible,
+  .bg-paper:focus-visible {
+    outline-color: var(--color-print);
+  }
+}
+
+/* Reels: turn while playing. The rewind's backward spin is driven frame by frame by RewindPlayer,
+   decelerating with the counter. */
+@keyframes reel-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.reel,
+.reel-pack {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.reel-play {
+  animation: reel-spin var(--dur-loop-reel) linear infinite;
+}
+
+/* The answer sheet folding into its strip when you miss is a FLIP done in PracticeFlow (Web Animations).
+   The copies it moves keep still inside: no oval or "Correct" entrance replays on them. */
+[data-strip-ghost] * {
+  animation: none !important;
+}
+
+/* Pencil fills an oval from the left (--dur-1); "Correct" fades in (--dur-2). */
+@keyframes pencil {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+}
+.pencil {
+  animation: pencil var(--dur-1) var(--ease-out);
+}
+/* The scribble inside the mark is drawn back and forth as the fill wipes in. */
+.pencil .scribble {
+  stroke-dasharray: 1;
+  animation: pen-draw var(--dur-1) var(--ease-out) backwards;
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+.fade-in {
+  animation: fade-in var(--dur-2) var(--ease-out);
+}
+
+/* Skeletons (PLAN, Usability): each screen's own layout in placeholder shapes. A slow (1.5 s), low-contrast
+   glint sweeps across every .skeleton shape; reduced motion leaves the shape static. Only transform animates.
+   Shapes set their own fill; .skeleton-paper on any ancestor switches the glint to the paper's. */
+.skeleton {
+  position: relative;
+  overflow: hidden;
+}
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 25%, var(--skeleton-glint, rgb(255 255 255 / 0.07)) 50%, transparent 75%);
+  transform: translateX(-100%);
+  animation: shimmer var(--dur-loop-shimmer) var(--ease-in-out) infinite;
+  pointer-events: none;
+}
+.skeleton-paper {
+  --skeleton-glint: rgb(232 240 227 / 0.55);
+}
+@keyframes shimmer {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+/* "One line saying what's happening" (PLAN, Usability), for loading that takes over 3 seconds.
+   Its space is held from the start so nothing moves when it appears; it appears at once, not animated,
+   so the 3 s delay holds with reduced motion too (that rule shortens durations, not delays). */
+.after-3s {
+  visibility: hidden;
+  animation: appear 1ms 3s forwards;
+}
+@keyframes appear {
+  from,
+  to {
+    visibility: visible;
+  }
+}
+/* What that line replaces: a placeholder that steps aside at 3 s. */
+.until-3s {
+  animation: step-aside 1ms 3s forwards;
+}
+@keyframes step-aside {
+  from,
+  to {
+    visibility: hidden;
+  }
+}
+
+/* The grading beat after Check answer (about 0.6 s, its steps overlapping, the sheet full size), all on the motion tokens: the
+   correct oval fills and "Correct" fades in (0 to --dur-2, .fade-in); the red pen circles the student's
+   oval (--dur-1 to --dur-1 + --dur-3, the loop runs on a little past its start like a real pen) and "You
+   marked" fades in; the margin note writes itself in; then the next steps appear. Each runs once. */
+@keyframes pen-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.pen-circle {
+  stroke-dasharray: 1 2;
+  stroke-dashoffset: 1;
+  animation: pen-draw var(--dur-3) var(--ease-out) var(--stagger) forwards;
+}
+.grade-marked {
+  animation: fade-in var(--dur-1) var(--ease-out) var(--dur-1) backwards;
+}
+@keyframes pen-write {
+  from {
+    clip-path: inset(-20% 100% -20% 0);
+  }
+  to {
+    clip-path: inset(-20% 0 -20% 0);
+  }
+}
+.pen-note {
+  animation: pen-write var(--dur-2) var(--ease-out) var(--dur-2) backwards;
+}
+.grade-next {
+  animation: fade-in var(--dur-1) var(--ease-out) var(--dur-3) backwards;
+}
+/* Import: the tapes drop onto the shelf one at a time, once per import (TapeShelf). The phone counts from
+   the first tape it shows. The stagger stops after the fifth tape, so a long shelf is never left half faded (the
+   latest lecture's tape was still at low contrast for most of a second). */
+@keyframes tape-drop {
+  from {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+}
+.tape-drop {
+  animation: tape-drop var(--dur-3) var(--ease-settle) calc(min(var(--i-phone, 0), 4) * var(--stagger)) backwards;
+}
+@media (min-width: 1024px) {
+  .tape-drop {
+    animation-delay: calc(min(var(--i, 0), 4) * var(--stagger));
+  }
+}
+html[data-tapes-seen] .tape-drop {
+  animation: none;
+}
+
+/* Course tape: the stops come in along the tape one after another, the tape head runs along the ribbon from
+   the first lecture to where the course is now (TapeDeck, painted per frame), then each glow pulses once. */
+@keyframes stop-in {
+  from {
+    opacity: 0;
+  }
+}
+.stop-in {
+  animation: stop-in var(--dur-2) var(--ease-out) calc(var(--i, 0) * var(--stagger)) backwards;
+}
+@keyframes dot-pop {
+  from {
+    transform: scale(0.4);
+  }
+}
+.dot-pop {
+  animation: dot-pop var(--dur-2) var(--ease-settle) calc(var(--i, 0) * var(--stagger)) backwards;
+}
+.head-arrive {
+  animation: fade-in var(--dur-2) var(--ease-out) calc(var(--dur-2) + var(--dur-rewind)) backwards;
+}
+@keyframes glow-pulse {
+  from {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+.glow-pulse {
+  animation: glow-pulse var(--dur-3) var(--ease-settle) calc(var(--n, 0) * var(--stagger)) backwards;
+}
+
+/* Mastery: the answered question's segment in the progress row fills in from the left after the answer. */
+@keyframes seg-fill {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+}
+.seg-fill {
+  animation: seg-fill var(--dur-2) var(--ease-out) var(--dur-2) backwards;
+}
+
+/* The tutor: the phone's bottom sheet rises (--dur-3) and the desktop panel fades in (--dur-2). */
+@keyframes sheet-up {
+  from {
+    transform: translateY(100%);
+  }
+}
+.sheet-up {
+  animation: sheet-up var(--dur-3) var(--ease-out);
+}
+@media (min-width: 1024px) {
+  .sheet-up {
+    animation: fade-in var(--dur-2) var(--ease-out);
+  }
+}
+
+/* The rewind screen's frame (addendum, item 2): the player column is as wide as the height left lets its 16:9
+   slide be, so the slide, the transport under it at the same width, and the transcript panel all fit above the
+   fold at 1280x800 and 1440x900. --chrome-h is the header above it (the demo's app header and its permission
+   strip, or the screen's own slim header elsewhere). The strip shows the whole question in the height left over
+   by the two buttons under it (it steps its type down to fit). */
+:root {
+  /* Room under the last button of a phone screen: Safari's floating toolbar covers about this much of the bottom
+     (env() needs viewport-fit=cover, app/layout.tsx). Desktop screens set their own padding at lg. */
+  --phone-bottom-room: calc(env(safe-area-inset-bottom) + 88px);
+  --chrome-h: 64px;
+  --tutor-fixed: 474px;
+}
+:root:has([data-demo-header]) {
+  --chrome-h: 89px;
+}
+:root:has([data-demo-header]) [data-rewind-own-header] {
+  display: none;
+}
+@media (min-width: 1024px) {
+  .player-column {
+    /* Sized from the width rules only: the video never shrinks for the transcript, which gives up lines instead
+       (3 under 900 px tall, RewindPlayer; John, Oct 25). */
+    flex: 0 1 1200px;
+    min-width: 340px;
+  }
+  /* With the recording playing, the live caption has its own band under the picture (and the transcript gives
+     up a line to it), and the setup line carries its source. */
+  .player-column:has([data-caption-band]) {
+    --player-extra: 15px;
+  }
+  /* The rewind's sheet column: the strip's stem takes the largest size from 18 px up to its fit step (20 px at most)
+     that still sets ~45 characters a line in the column's text width (the strip's 50 px of padding off; Source Serif
+     semibold runs about 0.5 em a character, more with capitals and long words, hence the margin in 26): a readable measure at every desktop width (John, Oct 25). */
+  .sheet-column {
+    container-type: inline-size;
+  }
+  .sheet-column .strip-stem {
+    font-size: clamp(18px, calc((100cqi - 50px) / 26), var(--strip-stem));
+  }
+  /* The tutor open beside it (two columns): the player column is as wide as the height left lets its slide be at 16:9,
+     and the slide fills it, so the slide, the transport and the transcript are one width (John, Oct 25). Everything
+     but the picture is --tutor-fixed tall (the graded summary strip, the caption row, the transport, the transcript,
+     Next question and the gaps). */
+  .player-column[data-tutor-mode] {
+    flex: 0 1 clamp(400px, calc((100dvh - var(--chrome-h) - var(--tutor-fixed) - var(--tutor-extra, 0px)) * 16 / 9 + 16px), 760px);
+  }
+  /* A live caption band (one line with the tutor open) under the picture: the slide gives up that height, so Next question stays on screen. */
+  .player-column[data-tutor-mode]:has([data-caption-band]) {
+    --tutor-extra: 36px;
+  }
+  /* With reduced motion the column's width never changes after the first frame: it keeps the caption band's room
+     whether or not the band shows (a recording's error, which removes it, can arrive frames after the rewind mounts). */
+  @media (prefers-reduced-motion: reduce) {
+    .player-column {
+      --player-extra: 15px;
+    }
+    .player-column[data-tutor-mode] {
+      --tutor-extra: 36px;
+    }
+  }
+  /* Elsewhere (the Course tape's route player, the radar) the picture keeps to the height left, so the controls stay on screen. */
+  [data-player-figure] {
+    max-width: calc((100dvh - 548px) * 16 / 9 + 24px);
+    margin-inline: auto;
+  }
+  .player-column [data-player-figure] {
+    max-width: none;
+  }
+  [data-rewind-frame] [data-strip-fit] {
+    max-height: calc(100dvh - var(--chrome-h) - 40px - 132px);
+  }
+}
+
+/* Micro-interactions (addendum, item 5): chips, tapes and small controls lift 2 px on hover; the press below
+   gives .98 under the finger. (.btn and .cassette carry the same lift in elevation.css.) */
+.lift {
+  transition: translate var(--dur-1) var(--ease-out), scale var(--dur-1) var(--ease-out);
+}
+.lift:not(:disabled):hover {
+  translate: 0 -2px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .lift:not(:disabled):hover {
+    translate: none;
+  }
+}
+
+/* A panel that scrolls inside fades out over its last 24 px, so no line ends cut mid-text; the padding lets the
+   last line scroll clear of the fade. */
+.fade-end {
+  mask-image: linear-gradient(to bottom, black calc(100% - 24px), transparent);
+  padding-bottom: 24px;
+}
+
+/* The tutor's conversation scrolls like the deck: a thin tutor-scroll thumb, no white track. */
+.tutor-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-tutor-scroll) transparent;
+}
+.tutor-scroll::-webkit-scrollbar {
+  width: 6px;
+  background: transparent;
+}
+.tutor-scroll::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background: var(--color-tutor-scroll);
+}
+.tutor-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* The study session opens once: the rail slides in, then its topics and the first message rise 40 ms apart. A question
+   card graded in the chat stamps its verdict. All of it off with reduced motion (below). */
+@keyframes rail-in {
+  from {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+}
+.study-rail-in {
+  animation: rail-in var(--dur-3) var(--ease-out) backwards;
+}
+.study-rise {
+  animation: rise var(--dur-2) var(--ease-out) calc(var(--dur-1) + var(--i, 0) * var(--stagger-entrance)) backwards;
+}
+@keyframes stamp {
+  from {
+    opacity: 0;
+    transform: scale(1.6) rotate(-8deg);
+  }
+}
+.stamp {
+  display: inline-block;
+  animation: stamp var(--dur-2) var(--ease-settle) backwards;
+}
+
+/* Press: buttons and links give a little under the finger (with the hover lift's transition). */
+@layer base {
+  :where(button, a, [role="button"]):not(:disabled):active {
+    scale: 0.98;
+  }
+}
+
+/* The pen wobbles as it circles: a slight turn that settles while the loop is drawn. */
+@keyframes pen-wobble {
+  from {
+    transform: rotate(-4deg) scale(0.96);
+  }
+}
+.pen-wobble {
+  transform-origin: 50% 50%;
+  animation: pen-wobble var(--dur-3) var(--ease-settle) var(--stagger) backwards;
+}
+/* After the note, the next steps rise into place one after another (--stagger apart). */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+.grade-rise {
+  animation: rise var(--dur-2) var(--ease-out) calc(var(--dur-3) + var(--i, 0) * var(--stagger)) backwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    /* 0s, not 0.01ms: a short transition still paints its start state for a frame (e.g. the first frame after a miss). */
+    transition-duration: 0s !important;
+  }
+  .skeleton::after {
+    animation: none;
+    display: none;
+  }
+  .reel-play {
+    animation: none !important;
+  }
+  /* Entrances are skipped outright, so even the first frame shows the end state. */
+  .pencil,
+  .fade-in,
+  .pen-circle,
+  .grade-marked,
+  .pen-note,
+  .grade-next,
+  .grade-rise,
+  .pen-wobble,
+  .tape-drop,
+  .stop-in,
+  .dot-pop,
+  .head-arrive,
+  .glow-pulse,
+  .seg-fill,
+  .sheet-up,
+  .study-rail-in,
+  .study-rise,
+  .stamp,
+  .pencil .scribble {
+    animation: none !important;
+  }
+  .pen-circle {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* The phone's pinned bars (practice: Next question; course tape: Tonight's route back): focusing or
+   scrolling to anything (a transcript line, the scrub bar, a tape stop) stops clear of them, never under. */
+@media (max-width: 1023.98px) {
+  html:has([data-next-bar]),
+  html:has([data-route-bar]) {
+    scroll-padding-bottom: 6rem;
+  }
+}
+
+/* Code on the exam sheet (CodeBlock): printed line numbers in a gutter, kept out of text selection. */
+.code-lines {
+  tab-size: 4;
+}
+.code-lines code {
+  counter-reset: code-line;
+}
+.code-lines code > span::before {
+  counter-increment: code-line;
+  content: counter(code-line);
+  display: inline-block;
+  width: 3.5ch;
+  padding-right: 1.5ch;
+  text-align: right;
+  color: var(--color-print);
+  opacity: 0.75;
+  user-select: none;
+}

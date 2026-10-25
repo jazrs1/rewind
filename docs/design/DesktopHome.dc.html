@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Rewind course home on desktop</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&amp;family=Caveat:wght@600;700&amp;family=Atkinson+Hyperlegible:wght@400;700&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#FFB08F}a:hover{color:#F3E9D2}
+</style>
+</helmet>
+<div style="width: 1280px; height: 840px; box-sizing: border-box; background: #1E2B30; color: #F3E9D2; font-family: 'Atkinson Hyperlegible', sans-serif; display: flex">
+  <nav aria-label="Courses" style="width: 264px; flex: none; box-sizing: border-box; padding: 28px 20px; background: #172226; display: flex; flex-direction: column; gap: 10px">
+    <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 32px; letter-spacing: -1px; margin-bottom: 18px">Rewind</div>
+    <div style="font-size: 13px; color: #9FA7A3; margin-bottom: 2px">Your courses</div>
+    <a href="#" style="display: flex; flex-direction: column; gap: 2px; padding: 12px 14px; border-radius: 10px; background: #2A3A40; color: #F3E9D2; text-decoration: none">
+      <span style="font-weight: 700; font-size: 16px">COP3530</span><span style="font-size: 13px; color: #C9C3B3">Exam 2 in [N] days</span>
+    </a>
+    <a href="#" style="display: flex; flex-direction: column; gap: 2px; padding: 12px 14px; border-radius: 10px; color: #F3E9D2; text-decoration: none">
+      <span style="font-weight: 700; font-size: 16px">MAS3114</span><span style="font-size: 13px; color: #9FA7A3">Exam 3 in [N] days</span>
+    </a>
+    <button style="margin-top: 8px; min-height: 44px; border-radius: 10px; border: 2px solid #56636A; background: transparent; color: #F3E9D2; font: 700 14px 'Atkinson Hyperlegible', sans-serif">Import another course</button>
+    <div style="margin-top: auto; display: flex; align-items: center; gap: 10px; font-size: 14px; color: #C9C3B3">
+      <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><rect x="2" y="2" width="7" height="7" fill="none" stroke="#C9C3B3" stroke-width="1.8"></rect><rect x="13" y="2" width="7" height="7" fill="none" stroke="#C9C3B3" stroke-width="1.8"></rect><rect x="2" y="13" width="7" height="7" fill="none" stroke="#C9C3B3" stroke-width="1.8"></rect><path d="M13 13h3v3h-3zM17 17h3v3h-3z" fill="#C9C3B3"></path></svg>
+      <a href="#">Continue on your phone</a>
+    </div>
+  </nav>
+
+  <main style="flex: 1; box-sizing: border-box; padding: 36px 48px; display: flex; flex-direction: column; gap: 24px; min-width: 0">
+    <div style="display: flex; justify-content: space-between; align-items: flex-end">
+      <div style="display: flex; flex-direction: column; gap: 4px">
+        <h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 60px; line-height: 0.95; letter-spacing: -2.5px">COP3530</h1>
+        <div style="font-size: 16px; color: #C9C3B3">Data Structures and Algorithms, imported from Canvas [time] ago</div>
+      </div>
+      <a href="#" style="font-size: 15px">Check for new files</a>
+    </div>
+
+    <div style="display: flex; gap: 32px; flex: 1; min-height: 0">
+      <section style="flex: 0 0 440px; display: flex; flex-direction: column; gap: 16px">
+        <div style="position: relative; background: #CFDCC8; color: #16241C; border-radius: 6px; padding: 14px 44px 14px 22px; display: flex; flex-direction: column; gap: 10px; overflow: hidden">
+          <div style="position: absolute; right: 14px; top: 18px; bottom: 18px; display: flex; flex-direction: column; justify-content: space-between" aria-hidden="true">
+            <sc-for list="{{marks}}" as="m" hint-placeholder-count="10"><div style="width: 16px; height: 6px; background: #16241C"></div></sc-for>
+          </div>
+          <div style="display: flex; justify-content: space-between; border-bottom: 1.5px solid #24573F; padding-bottom: 8px; font-size: 13px; color: #24573F"><span style="font-weight: 700">Next exam</span><span>From the syllabus, confirmed by you</span></div>
+          <div style="display: flex; align-items: flex-end; justify-content: space-between">
+            <div style="font-family: 'Source Serif 4', serif; font-weight: 600; font-size: 38px; line-height: 1">Exam 2</div>
+            <div style="display: flex; align-items: baseline; gap: 6px; color: #24573F"><span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 52px; line-height: 0.9; color: #16241C">[N]</span><span style="font-size: 15px">days left</span></div>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+            <div style="border: 1.5px solid #24573F; border-radius: 3px; padding: 6px 10px; display: flex; flex-direction: column"><span style="font-size: 12px; color: #24573F">Date</span><span style="font-family: 'Caveat', cursive; font-weight: 700; font-size: 22px; color: #3A3F42">[Date], [time]</span></div>
+            <div style="border: 1.5px solid #24573F; border-radius: 3px; padding: 6px 10px; display: flex; flex-direction: column"><span style="font-size: 12px; color: #24573F">Room</span><span style="font-family: 'Caveat', cursive; font-weight: 700; font-size: 22px; color: #3A3F42">[Room]</span></div>
+          </div>
+        </div>
+        <button style="min-height: 58px; border-radius: 10px; border: none; background: #FA4616; color: #1E2B30; font: 700 19px 'Atkinson Hyperlegible', sans-serif">Start Exam 2 practice</button>
+        <div style="display: flex; align-items: center; gap: 14px; padding: 12px 16px; border-radius: 12px; border: 1.5px solid #3A474C">
+          <div style="flex: 1; display: flex; flex-direction: column; gap: 2px; min-width: 0">
+            <span style="font-size: 13px; color: #9FA7A3">Also this week, from Kapoor's announcement</span>
+            <span style="font-weight: 700; font-size: 16px">CQ7 quiz, due Friday</span>
+            <span style="font-size: 14px; color: #C9C3B3">Multiple choice, one handwritten sheet of notes</span>
+          </div>
+          <a href="#" style="font-size: 14px; flex: none">Plan my sheet</a>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px; padding: 16px 18px; border-radius: 12px; background: #2A3A40">
+          <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 18px">Weakest for Exam 2</div>
+          <div style="display: flex; align-items: center; gap: 12px; font-size: 15px"><span style="flex: 1">Balanced trees</span><span style="display: flex; gap: 4px" aria-label="2 of 5 mastered"><span style="width: 18px; height: 10px; border-radius: 5px; background: #F3E9D2"></span><span style="width: 18px; height: 10px; border-radius: 5px; background: #F3E9D2"></span><span style="width: 18px; height: 10px; border-radius: 5px; border: 1.5px solid #9FA7A3; box-sizing: border-box"></span><span style="width: 18px; height: 10px; border-radius: 5px; border: 1.5px solid #9FA7A3; box-sizing: border-box"></span><span style="width: 18px; height: 10px; border-radius: 5px; border: 1.5px solid #9FA7A3; box-sizing: border-box"></span></span></div>
+          <div style="display: flex; align-items: center; gap: 12px; font-size: 15px"><span style="flex: 1">Heaps</span><span style="display: flex; gap: 4px" aria-label="3 of 5 mastered"><span style="width: 18px; height: 10px; border-radius: 5px; background: #F3E9D2"></span><span style="width: 18px; height: 10px; border-radius: 5px; background: #F3E9D2"></span><span style="width: 18px; height: 10px; border-radius: 5px; background: #F3E9D2"></span><span style="width: 18px; height: 10px; border-radius: 5px; border: 1.5px solid #9FA7A3; box-sizing: border-box"></span><span style="width: 18px; height: 10px; border-radius: 5px; border: 1.5px solid #9FA7A3; box-sizing: border-box"></span></span></div>
+          <div style="font-size: 13px; color: #9FA7A3">Starts from your Canvas grades, updates after every answer</div>
+        </div>
+      </section>
+
+      <section style="flex: 1; display: flex; flex-direction: column; gap: 14px; min-width: 0">
+        <div style="display: flex; justify-content: space-between; align-items: baseline">
+          <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 24px">Lecture tapes</h2>
+          <button style="display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border-radius: 10px; border: 2px solid #F3E9D2; background: transparent; color: #F3E9D2; font: 700 14px 'Atkinson Hyperlegible', sans-serif"><span style="width: 12px; height: 12px; border-radius: 50%; background: #E5484D" aria-hidden="true"></span>Record a lecture</button>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px">
+          <div style="display: flex; align-items: center; height: 56px; border-radius: 8px; background: #3D6FD9; padding: 0 9px"><div style="flex: 1; height: 40px; border-radius: 4px; background: #F3E9D2; color: #1E2B30; display: flex; align-items: center; justify-content: space-between; padding: 0 12px; font-family: 'Caveat', cursive; font-weight: 700; font-size: 22px"><span>Mod 4: Balanced Trees</span></div></div>
+          <div style="display: flex; align-items: center; height: 56px; border-radius: 8px; background: #F26B3A; padding: 0 9px; gap: 8px"><div style="flex: 1; height: 40px; border-radius: 4px; background: #F3E9D2; color: #1E2B30; display: flex; align-items: center; padding: 0 12px; font-family: 'Caveat', cursive; font-weight: 700; font-size: 22px">Mod 5: Heaps</div><div style="height: 40px; padding: 0 10px; border-radius: 4px; background: #1E2B30; color: #F3E9D2; display: flex; align-items: center; font-size: 13px; font-weight: 700">On Exam 2</div></div>
+          <div style="display: flex; align-items: center; height: 56px; border-radius: 8px; background: #E9B43C; padding: 0 9px"><div style="flex: 1; height: 40px; border-radius: 4px; background: #F3E9D2; color: #1E2B30; display: flex; align-items: center; padding: 0 12px; font-family: 'Caveat', cursive; font-weight: 700; font-size: 22px">Mod 6: Sorting</div></div>
+          <div style="display: flex; align-items: center; height: 56px; border-radius: 8px; background: #7FC8A9; padding: 0 9px"><div style="flex: 1; height: 40px; border-radius: 4px; background: #F3E9D2; color: #1E2B30; display: flex; align-items: center; padding: 0 12px; font-family: 'Caveat', cursive; font-weight: 700; font-size: 22px">Mod 7: Hash Tables</div></div>
+          <div style="display: flex; align-items: center; height: 56px; border-radius: 8px; background: #3A474C; padding: 0 9px"><div style="flex: 1; height: 40px; border-radius: 4px; background: #56636A; color: #E3E6E4; display: flex; align-items: center; justify-content: space-between; padding: 0 12px"><span style="font-family: 'Caveat', cursive; font-weight: 700; font-size: 22px">Mod 8: Graphs</span><span style="font-size: 13px">Blank tape</span></div></div>
+          <div style="display: flex; align-items: center; height: 56px; border-radius: 8px; background: #3A474C; padding: 0 9px"><div style="flex: 1; height: 40px; border-radius: 4px; background: #56636A; color: #E3E6E4; display: flex; align-items: center; justify-content: space-between; padding: 0 12px"><span style="font-family: 'Caveat', cursive; font-weight: 700; font-size: 22px">Mod 9: Paradigms</span><span style="font-size: 13px">Blank tape</span></div></div>
+        </div>
+        <div style="margin-top: 6px; padding: 16px 18px; border-radius: 12px; background: #2A3A40; display: flex; flex-direction: column; gap: 8px">
+          <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 18px">Blank tapes fill in on their own</div>
+          <p style="margin: 0; font-size: 15px; line-height: 1.5; color: #C9C3B3; max-width: 560px">Open a Zoom recording for this course with the extension on, and Rewind adds its transcript to the matching tape. Until then, questions on that topic point to the slides.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":840}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { marks: Array.from({ length: 10 }, (_, i) => ({ i })) };
+  }
+}
+</script>
+</body>
+</html>

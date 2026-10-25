@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Rewind missed question on phone</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&amp;family=Caveat:wght@600;700&amp;family=Atkinson+Hyperlegible:wght@400;700&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#FFB08F}a:hover{color:#F3E9D2}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #1E2B30; color: #F3E9D2; font-family: 'Atkinson Hyperlegible', sans-serif; padding: 20px 20px 24px; display: flex; flex-direction: column; gap: 14px">
+  <div style="display: flex; align-items: center; gap: 12px">
+    <button aria-label="Back to the question" style="width: 48px; height: 48px; flex: none; border-radius: 10px; border: 2px solid #F3E9D2; background: transparent; display: flex; align-items: center; justify-content: center">
+      <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M16 10H4M9 5l-5 5 5 5" fill="none" stroke="#F3E9D2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+    </button>
+    <div style="font-size: 15px; color: #C9C3B3">Question 4 of 12</div>
+  </div>
+
+  <div style="background: #CFDCC8; color: #16241C; border-radius: 6px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px">
+    <div style="display: flex; align-items: center; gap: 10px">
+      <span style="position: relative; width: 40px; height: 22px; flex: none; border-radius: 11px; background: #3A3F42">
+        <span style="position: absolute; left: -7px; top: -6px; width: 52px; height: 32px; border-radius: 50%; border: 2.5px solid #9A2E22; box-sizing: border-box"></span>
+      </span>
+      <span style="font: 400 17px 'Source Serif 4', serif">You marked A, left rotation at 10</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 10px">
+      <span style="width: 40px; height: 22px; flex: none; border-radius: 11px; box-sizing: border-box; border: 1.5px solid #24573F; color: #24573F; display: flex; align-items: center; justify-content: center; font: 700 12px 'Atkinson Hyperlegible', sans-serif">B</span>
+      <span style="font: 600 17px 'Source Serif 4', serif">Correct: right-left rotation at 10</span>
+    </div>
+  </div>
+
+  <div style="position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 10px; background: #E4DFD3; color: #1E2B30; overflow: hidden; box-sizing: border-box; padding: 12px 14px; display: flex; flex-direction: column">
+    <div style="font-size: 12px; color: #4C5A60">4 - Balanced Trees, slide [N]</div>
+    <div style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 14px; padding-bottom: 34px">
+      <svg width="104" height="80" viewBox="0 0 200 160" role="img" aria-label="Before: 10 with right child 30, and 20 as 30's left child">
+        <line x1="50" y1="30" x2="110" y2="80" stroke="#1E2B30" stroke-width="3"></line>
+        <line x1="110" y1="80" x2="70" y2="130" stroke="#FA4616" stroke-width="4"></line>
+        <circle cx="50" cy="30" r="24" fill="#F1EDE4" stroke="#1E2B30" stroke-width="3"></circle><text x="50" y="38" text-anchor="middle" font-size="24" fill="#1E2B30">10</text>
+        <circle cx="110" cy="80" r="24" fill="#F1EDE4" stroke="#1E2B30" stroke-width="3"></circle><text x="110" y="88" text-anchor="middle" font-size="24" fill="#1E2B30">30</text>
+        <circle cx="70" cy="130" r="24" fill="#F1EDE4" stroke="#FA4616" stroke-width="4"></circle><text x="70" y="138" text-anchor="middle" font-size="24" fill="#1E2B30">20</text>
+      </svg>
+      <svg width="30" height="16" viewBox="0 0 60 24" aria-hidden="true"><path d="M4 12h44M40 4l10 8-10 8" fill="none" stroke="#4C5A60" stroke-width="3"></path></svg>
+      <svg width="104" height="58" viewBox="0 0 200 110" role="img" aria-label="After: 20 at the root with children 10 and 30">
+        <line x1="100" y1="30" x2="50" y2="80" stroke="#1E2B30" stroke-width="3"></line>
+        <line x1="100" y1="30" x2="150" y2="80" stroke="#1E2B30" stroke-width="3"></line>
+        <circle cx="100" cy="30" r="24" fill="#F1EDE4" stroke="#FA4616" stroke-width="4"></circle><text x="100" y="38" text-anchor="middle" font-size="24" fill="#1E2B30">20</text>
+        <circle cx="50" cy="80" r="24" fill="#F1EDE4" stroke="#1E2B30" stroke-width="3"></circle><text x="50" y="88" text-anchor="middle" font-size="24" fill="#1E2B30">10</text>
+        <circle cx="150" cy="80" r="24" fill="#F1EDE4" stroke="#1E2B30" stroke-width="3"></circle><text x="150" y="88" text-anchor="middle" font-size="24" fill="#1E2B30">30</text>
+      </svg>
+    </div>
+    <div style="position: absolute; left: 10px; right: 10px; bottom: 8px; padding: 6px 10px; border-radius: 6px; background: #1E2B30; color: #F3E9D2; font-size: 13px; line-height: 1.35; text-align: center">[Live caption of what Kapoor is saying]</div>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 8px; padding: 12px 14px; border-radius: 12px; background: #2A3A40">
+    <div style="font-family: 'Caveat', cursive; font-weight: 700; font-size: 19px; color: #FFB08F">Rewound to where Kapoor explains it</div>
+    <div style="display: flex; align-items: center; gap: 10px">
+      <button aria-label="Back 10 seconds" style="width: 44px; height: 44px; flex: none; border-radius: 50%; border: 2px solid #F3E9D2; background: transparent; color: #F3E9D2; font: 700 12px 'Atkinson Hyperlegible', sans-serif">-10</button>
+      <button aria-label="Pause clip" style="width: 52px; height: 52px; flex: none; border-radius: 50%; border: none; background: #FA4616; display: flex; align-items: center; justify-content: center">
+        <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 3.5h3.5v13H5zM11.5 3.5H15v13h-3.5z" fill="#1E2B30"></path></svg>
+      </button>
+      <div style="flex: 1; display: flex; flex-direction: column; gap: 4px; min-width: 0">
+        <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 22px; line-height: 1; font-variant-numeric: tabular-nums">43:52</div>
+        <div style="position: relative; height: 6px; border-radius: 3px; background: #3A474C" role="slider" aria-label="Clip position" aria-valuetext="12 seconds of 40">
+          <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 30%; border-radius: 3px; background: #FA4616"></div>
+          <div style="position: absolute; left: 30%; top: 50%; width: 16px; height: 16px; margin: -8px 0 0 -8px; border-radius: 50%; background: #F3E9D2"></div>
+        </div>
+      </div>
+      <button aria-label="Playback speed" style="min-width: 48px; height: 44px; flex: none; border-radius: 10px; border: 2px solid #56636A; background: transparent; color: #F3E9D2; font: 700 14px 'Atkinson Hyperlegible', sans-serif">1x</button>
+    </div>
+    <div style="display: flex; justify-content: space-between; font-size: 13px; color: #C9C3B3"><span>28 seconds left of the clip</span><a href="#">Read transcript</a></div>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 12px; padding: 14px 16px; border-radius: 12px; background: #2A3A40">
+    <div style="font-size: 16px; line-height: 1.4">Want a hint to work it out yourself, or the full answer?</div>
+    <div style="display: flex; gap: 10px">
+      <button style="flex: 1; min-height: 46px; border-radius: 10px; border: 2px solid #F3E9D2; background: transparent; color: #F3E9D2; font: 700 15px 'Atkinson Hyperlegible', sans-serif">Give me a hint</button>
+      <button style="flex: 1; min-height: 46px; border-radius: 10px; border: none; background: #F3E9D2; color: #1E2B30; font: 700 15px 'Atkinson Hyperlegible', sans-serif">Show the answer</button>
+    </div>
+  </div>
+
+  <button style="margin-top: auto; min-height: 56px; border-radius: 10px; border: none; background: #FA4616; color: #1E2B30; font: 700 18px 'Atkinson Hyperlegible', sans-serif">Next question</button>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

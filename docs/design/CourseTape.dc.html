@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Rewind course tape</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&amp;family=Caveat:wght@600;700&amp;family=Atkinson+Hyperlegible:wght@400;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#FFB08F}a:hover{color:#F3E9D2}
+</style>
+</helmet>
+<div style="width: 1280px; height: 840px; box-sizing: border-box; background: #1E2B30; color: #F3E9D2; padding: 24px; display: flex; gap: 20px; font-family: 'Atkinson Hyperlegible', sans-serif">
+
+  <section aria-label="Course tape" style="position: relative; flex: 0 0 860px; height: 792px; border-radius: 12px; background: radial-gradient(ellipse at 50% 42%, #2C3D45 0%, #22323A 55%, #1A262B 100%); overflow: hidden">
+    <sc-for list="{{screws}}" as="w" hint-placeholder-count="4">
+      <div aria-hidden="true" style="position: absolute; left: {{w.x}}px; top: {{w.y}}px; width: 14px; height: 14px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #7D878B, #3A474C 70%); display: flex; align-items: center; justify-content: center"><div style="width: 9px; height: 2px; background: #1E2B30; transform: rotate(35deg)"></div></div>
+    </sc-for>
+    <div style="position: absolute; left: 24px; top: 20px; right: 24px; display: flex; justify-content: space-between; align-items: baseline; font-size: 13px; color: #C9C3B3">
+      <span style="margin-left: 14px"><b style="color: #F3E9D2">COP3530</b> · Fall 2026, from the first lecture to the final</span>
+      <span style="margin-right: 14px">Counter = minutes of lecture</span>
+    </div>
+
+    <sc-for list="{{glows}}" as="g" hint-placeholder-count="8">
+      <div aria-hidden="true" style="position: absolute; left: {{g.x}}px; top: {{g.y}}px; width: {{g.d}}px; height: {{g.d}}px; border-radius: 50%; background: {{g.bg}}; filter: blur(8px); mix-blend-mode: screen; pointer-events: none"></div>
+    </sc-for>
+
+    <sc-for list="{{rollers}}" as="q" hint-placeholder-count="3">
+      <svg width="160" height="160" viewBox="0 0 160 160" style="position: absolute; left: {{q.x}}px; top: {{q.y}}px; pointer-events: none" aria-hidden="true">
+        <circle cx="80" cy="80" r="77" fill="#26363D" stroke="#3E5158" stroke-width="2.5"></circle>
+        <circle cx="80" cy="80" r="52" fill="none" stroke="#2F4047" stroke-width="1.5"></circle>
+        <circle cx="80" cy="80" r="17" fill="#8F9A9E"></circle>
+        <circle cx="76" cy="76" r="9" fill="#C9CED0" opacity="0.7"></circle>
+        <circle cx="80" cy="80" r="4" fill="#1E2B30"></circle>
+      </svg>
+    </sc-for>
+
+    <svg width="860" height="792" viewBox="0 0 860 792" style="position: absolute; left: 0; top: 0; pointer-events: none" aria-hidden="true">
+      <path d="{{road}}" fill="none" stroke="#000000" stroke-opacity="0.38" stroke-width="20" transform="translate(1.5 4)"></path>
+      <path d="{{road}}" fill="none" stroke="#6E4934" stroke-width="16"></path>
+      <path d="{{road}}" fill="none" stroke="#3B2519" stroke-width="12.5"></path>
+      <path d="{{road}}" fill="none" stroke="#7E5239" stroke-width="5" stroke-opacity="0.55"></path>
+      <path d="{{road}}" fill="none" stroke="#D2A684" stroke-width="1" stroke-opacity="0.45"></path>
+      <path d="{{road}}" fill="none" stroke="#22323A" stroke-opacity="0.6" stroke-width="17" stroke-dasharray="{{ahead}}"></path>
+    </svg>
+
+    <svg width="120" height="120" viewBox="0 0 120 120" style="position: absolute; left: 0; top: 90px; pointer-events: none" aria-hidden="true">
+      <circle cx="60" cy="60" r="34" fill="#3B2519"></circle>
+      <circle cx="60" cy="60" r="30" fill="none" stroke="#5E3D2B" stroke-width="1"></circle>
+      <circle cx="60" cy="60" r="25" fill="none" stroke="#5E3D2B" stroke-width="1"></circle>
+      <circle cx="60" cy="60" r="20" fill="#F3E9D2"></circle>
+      <circle cx="60" cy="60" r="11" fill="#1E2B30"></circle>
+      <g fill="#F3E9D2"><rect x="57.5" y="47" width="5" height="6"></rect><rect x="57.5" y="47" width="5" height="6" transform="rotate(60 60 60)"></rect><rect x="57.5" y="47" width="5" height="6" transform="rotate(120 60 60)"></rect><rect x="57.5" y="47" width="5" height="6" transform="rotate(180 60 60)"></rect><rect x="57.5" y="47" width="5" height="6" transform="rotate(240 60 60)"></rect><rect x="57.5" y="47" width="5" height="6" transform="rotate(300 60 60)"></rect></g>
+    </svg>
+    <div style="position: absolute; left: 14px; top: 206px; font-size: 13px; font-weight: 700; color: #C9C3B3; white-space: nowrap">First lecture</div>
+
+    <svg width="120" height="120" viewBox="0 0 120 120" style="position: absolute; left: 0; top: 600px; pointer-events: none" aria-hidden="true">
+      <circle cx="60" cy="60" r="52" fill="#3B2519"></circle>
+      <circle cx="60" cy="60" r="52" fill="#22323A" fill-opacity="0.5"></circle>
+      <circle cx="60" cy="60" r="46" fill="none" stroke="#4A3428" stroke-width="1"></circle>
+      <circle cx="60" cy="60" r="39" fill="none" stroke="#4A3428" stroke-width="1"></circle>
+      <circle cx="60" cy="60" r="31" fill="none" stroke="#4A3428" stroke-width="1"></circle>
+      <circle cx="60" cy="60" r="20" fill="#F3E9D2"></circle>
+      <circle cx="60" cy="60" r="11" fill="#1E2B30"></circle>
+      <g fill="#F3E9D2"><rect x="57.5" y="47" width="5" height="6"></rect><rect x="57.5" y="47" width="5" height="6" transform="rotate(60 60 60)"></rect><rect x="57.5" y="47" width="5" height="6" transform="rotate(120 60 60)"></rect><rect x="57.5" y="47" width="5" height="6" transform="rotate(180 60 60)"></rect><rect x="57.5" y="47" width="5" height="6" transform="rotate(240 60 60)"></rect><rect x="57.5" y="47" width="5" height="6" transform="rotate(300 60 60)"></rect></g>
+    </svg>
+    <div style="position: absolute; left: 22px; top: 722px; font-size: 13px; font-weight: 700; color: #C9C3B3; white-space: nowrap">Final exam</div>
+
+    <sc-for list="{{marks}}" as="m" hint-placeholder-count="5">
+      <div style="position: absolute; left: {{m.x}}px; top: {{m.y}}px; padding: 1px 5px; border-radius: 3px; background: #1E2B30; border: 1px solid #56636A; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 1px; color: #C9C3B3; font-variant-numeric: tabular-nums">{{m.v}}</div>
+    </sc-for>
+
+    <sc-for list="{{stops}}" as="s" hint-placeholder-count="20">
+      <div style="position: absolute; left: {{s.dx}}px; top: {{s.dy}}px; width: 14px; height: 14px; border-radius: 50%; background: {{s.dot}}; border: 3px solid #1E2B30; box-sizing: content-box; box-shadow: {{s.ring}}"></div>
+      <div style="position: absolute; left: {{s.lx}}px; top: {{s.ly}}px; width: 150px; text-align: {{s.align}}; font-size: 13px; font-weight: 700; line-height: 1.2; color: {{s.tc}}">{{s.name}}</div>
+    </sc-for>
+
+    <sc-for list="{{route}}" as="o" hint-placeholder-count="3">
+      <div style="position: absolute; left: {{o.x}}px; top: {{o.y}}px; height: 26px; padding: 0 8px; border-radius: 13px; background: #FA4616; color: #1E2B30; display: flex; align-items: center; gap: 4px; font-weight: 700; font-size: 13px; white-space: nowrap; box-shadow: 0 0 0 3px #1E2B30">◀◀ {{o.n}}</div>
+    </sc-for>
+
+    <sc-for list="{{flags}}" as="f" hint-placeholder-count="3">
+      <div style="position: absolute; left: {{f.x}}px; top: {{f.y}}px; display: flex; flex-direction: column; align-items: flex-start">
+        <div style="padding: 4px 8px; border-radius: 4px; background: {{f.bg}}; color: {{f.fg}}; font-size: 12.5px; font-weight: 700; white-space: nowrap">{{f.label}}</div>
+        <div style="width: 2px; height: 22px; margin-left: 10px; background: {{f.bg}}"></div>
+      </div>
+    </sc-for>
+
+    <div aria-hidden="true" style="position: absolute; left: {{here.hx}}px; top: {{here.hy}}px; width: 30px; height: 28px; border-radius: 4px; background: linear-gradient(180deg, #DDE2E4 0%, #9AA4A8 55%, #6E787C 100%); box-shadow: 0 2px 4px rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center"><div style="width: 2px; height: 20px; background: #1E2B30"></div></div>
+    <div style="position: absolute; left: {{here.x}}px; top: {{here.y}}px; display: flex; flex-direction: column; align-items: center; gap: 4px">
+      <div style="padding: 4px 10px; border-radius: 999px; background: #F3E9D2; color: #1E2B30; font-size: 13px; font-weight: 700; white-space: nowrap">You are here · Week 10</div>
+      <div style="width: 0; height: 0; border-left: 7px solid transparent; border-right: 7px solid transparent; border-top: 9px solid #F3E9D2"></div>
+    </div>
+  </section>
+
+  <aside style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+    <div style="display: flex; flex-direction: column; gap: 4px">
+      <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 22px">Rewind</div>
+      <h1 style="margin: 6px 0 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 40px; line-height: 1; letter-spacing: -1.2px">Course tape</h1>
+      <div style="font-size: 15px; color: #C9C3B3; line-height: 1.4">The whole semester on one tape. Rewind it to the stops that matter.</div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 9px; padding: 12px 14px; border-radius: 10px; background: #2A3A40; font-size: 13.5px">
+      <div style="display: flex; align-items: center; gap: 10px"><span style="width: 26px; height: 16px; flex: none; border-radius: 50%; background: radial-gradient(closest-side, rgba(250,70,22,0.85), rgba(233,180,60,0.35) 60%, rgba(233,180,60,0))"></span><span><b>Glow:</b> he stressed it</span></div>
+      <div style="display: flex; align-items: center; gap: 10px"><span style="width: 14px; height: 14px; margin: 0 6px; flex: none; border-radius: 50%; background: #F3E9D2; box-shadow: 0 0 0 3px #2A3A40, 0 0 0 5.5px #FFB08F"></span><span><b>Ring:</b> you miss it</span></div>
+      <div style="display: flex; align-items: center; gap: 10px"><span style="width: 18px; height: 6px; margin: 0 4px; flex: none; border-radius: 3px; background: #5B3A2A"></span><span><b>Bright tape:</b> lectures so far · dim tape is still ahead</span></div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <div style="display: flex; justify-content: space-between; align-items: baseline">
+        <span style="font-size: 14px; font-weight: 700">Tonight's route back</span>
+        <span style="font-size: 13px; color: #C9C3B3">for CQ7</span>
+      </div>
+      <sc-for list="{{steps}}" as="t" hint-placeholder-count="3">
+        <div style="display: flex; align-items: center; height: 50px; border-radius: 8px; background: {{t.shell}}; padding: 0 6px; gap: 6px">
+          <span style="width: 30px; height: 30px; flex: none; border-radius: 50%; background: #FA4616; color: #1E2B30; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px">{{t.n}}</span>
+          <div style="flex: 1; height: 36px; border-radius: 4px; background: #F3E9D2; color: #1E2B30; display: flex; align-items: center; justify-content: space-between; padding: 0 10px">
+            <span style="font-family: 'Caveat', cursive; font-weight: 700; font-size: 20px">{{t.name}}</span>
+            <span style="font-size: 12.5px; font-weight: 700; color: #4C5A60; white-space: nowrap">{{t.when}}</span>
+          </div>
+        </div>
+      </sc-for>
+      <div style="display: flex; align-items: baseline; gap: 8px; margin-top: 4px">
+        <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 40px; line-height: 1; font-variant-numeric: tabular-nums">06:40</span>
+        <span style="font-size: 14px; color: #C9C3B3">of his lectures, then 9 questions</span>
+      </div>
+    </div>
+
+    <div style="margin-top: auto; display: flex; flex-direction: column; gap: 10px">
+      <button style="min-height: 56px; border-radius: 10px; border: none; background: #FA4616; color: #1E2B30; font: 700 18px 'Atkinson Hyperlegible', sans-serif">Start the route back</button>
+      <div style="font-size: 13px; color: #C9C3B3; line-height: 1.45">Ranked from what he stressed and what you miss. Evidence, not a prediction. Tap any stop to see why.</div>
+    </div>
+  </aside>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":840}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const X0 = 130, X1 = 740, R = 85, Y = [150, 320, 490, 660];
+    const W = X1 - X0, T = Math.PI * R;
+    const total = 4 * W + 3 * T;
+    const road = 'M' + (X0 - 70) + ' ' + Y[0] + ' H' + X1 + ' A' + R + ' ' + R + ' 0 0 1 ' + X1 + ' ' + Y[1] +
+      ' H' + X0 + ' A' + R + ' ' + R + ' 0 0 0 ' + X0 + ' ' + Y[2] +
+      ' H' + X1 + ' A' + R + ' ' + R + ' 0 0 1 ' + X1 + ' ' + Y[3] + ' H' + (X0 - 70);
+    // point at distance s along the road; kind = row or turn
+    const K = total / 3441;
+    const at = (s) => {
+      let rest = s * K;
+      for (let i = 0; i < 4; i++) {
+        if (rest <= W) {
+          const ltr = i % 2 === 0;
+          return { x: ltr ? X0 + rest : X1 - rest, y: Y[i], kind: 'row', row: i };
+        }
+        rest -= W;
+        if (i < 3) {
+          if (rest <= T) {
+            const a = rest / R;
+            const right = i % 2 === 0;
+            const cy = (Y[i] + Y[i + 1]) / 2;
+            const x = right ? X1 + Math.sin(a) * R : X0 - Math.sin(a) * R;
+            return { x, y: cy - Math.cos(a) * R, kind: 'turn', side: right ? 'right' : 'left' };
+          }
+          rest -= T;
+        }
+      }
+      return { x: X0, y: Y[3], kind: 'row', row: 3 };
+    };
+    const HERE = 3130;
+    const shells = ['#56636A', '#56636A', '#3D6FD9', '#3D6FD9', '#F26B3A', '#F26B3A', '#E9B43C', '#7FC8A9'];
+    // name, s, module, stress 0-5, weak, route number
+    const raw = [
+      ['Big-O', 70, 0, 2, false, ''], ['Recursion', 250, 0, 1, false, ''], ['Linked lists', 430, 1, 1, false, ''], ['Stacks & queues', 600, 1, 1, false, ''],
+      ['BST insert', 1000, 2, 2, false, ''], ['Traversals', 1160, 2, 2, true, ''], ['AVL rotations', 1330, 3, 4, false, ''], ['Heapify', 1540, 4, 2, false, ''],
+      ['Priority queues', 1920, 4, 1, false, ''], ['Quick vs merge', 2060, 5, 2, false, ''], ['Stability', 2200, 5, 3, true, '2'], ['Hash functions', 2330, 6, 3, false, ''],
+      ['Pigeonhole', 2460, 6, 2, false, ''], ['Probing', 2600, 6, 5, true, '1'], ['Load factor', 2700, 6, 4, true, ''],
+      ['Sets vs maps', 2850, 6, 3, true, '3'], ['Two-Sum', 2960, 6, 2, false, ''], ['Representations', 3070, 7, 2, false, '']
+    ];
+    const stops = [], glows = [], route = [];
+    raw.forEach(([name, s, mod, stress, weak, n], i) => {
+      const p = at(s);
+      const ahead = s > HERE;
+      let lx, ly, align;
+      if (p.kind === 'turn') {
+        align = p.side === 'right' ? 'right' : 'left';
+        lx = p.side === 'right' ? p.x - 170 : p.x + 20;
+        ly = p.y - 8;
+      } else {
+        align = 'center';
+        lx = p.x - 75;
+        ly = i % 2 === 0 ? p.y - 38 : p.y + 20;
+      }
+      stops.push({
+        name, dx: p.x - 10, dy: p.y - 10, lx, ly, align,
+        dot: ahead ? '#56636A' : shells[mod],
+        tc: ahead ? '#8A9497' : '#F3E9D2',
+        ring: weak ? '0 0 0 3px #1E2B30, 0 0 0 6px #FFB08F' : 'none'
+      });
+      if (stress >= 2) {
+        const d = 70 + stress * 38;
+        const a = Math.min(0.9, 0.18 * stress + (weak ? 0.1 : 0));
+        glows.push({ x: p.x - d / 2, y: p.y - d / 2, d, bg: 'radial-gradient(closest-side, rgba(255,96,40,' + a.toFixed(2) + ') 0%, rgba(250,70,22,' + (a * 0.6).toFixed(2) + ') 35%, rgba(233,180,60,' + (a * 0.35).toFixed(2) + ') 65%, rgba(233,180,60,0) 100%)' });
+      }
+      if (n) {
+        if (p.kind === 'turn') {
+          route.push({ n, x: p.side === 'right' ? p.x - 82 : p.x + 20, y: p.y + 14 });
+        } else {
+          const below = i % 2 === 0;
+          route.push({ n, x: p.x - 22, y: below ? p.y + 16 : p.y - 44 });
+        }
+      }
+    });
+    const marks = [];
+    [480, 1250, 1880, 2520, 3400].forEach((s) => {
+      const p = at(s);
+      marks.push({ v: String(Math.round((s / 3441) * 1640)).padStart(4, '0'), x: p.x - 18, y: p.y - 7 });
+    });
+    const cq = at(3330), ex1 = at(1470), fin = at(total);
+    const hp = at(HERE);
+    return {
+      road,
+      ahead: '0 ' + (HERE * K + 70) + ' ' + (total + 300),
+      rollers: [{ x: X1 - 80, y: (Y[0] + Y[1]) / 2 - 80 }, { x: X0 - 80, y: (Y[1] + Y[2]) / 2 - 80 }, { x: X1 - 80, y: (Y[2] + Y[3]) / 2 - 80 }],
+      screws: [{ x: 14, y: 14 }, { x: 832, y: 14 }, { x: 14, y: 764 }, { x: 832, y: 764 }],
+      stops, glows, route, marks,
+      here: { x: hp.x - 80, y: hp.y - 62, hx: hp.x - 15, hy: hp.y - 14 },
+      flags: [
+        { label: 'Exam 1 · [score]', x: ex1.x - 10, y: ex1.y - 58, bg: '#56636A', fg: '#F3E9D2' },
+        { label: 'CQ7 · in 6 days', x: cq.x - 10, y: cq.y - 58, bg: '#F3E9D2', fg: '#1E2B30' }
+      ],
+      steps: [
+        { n: '1', name: 'Probing', when: 'Oct 15 · [mm:ss]', shell: '#E9B43C' },
+        { n: '2', name: 'Sorting stability', when: 'Oct 6 · [mm:ss]', shell: '#F26B3A' },
+        { n: '3', name: 'Sets vs maps', when: 'Oct 22 · [mm:ss]', shell: '#E9B43C' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

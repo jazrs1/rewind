@@ -1,0 +1,36 @@
+{
+ "_about": "Demo topics (lib/demo/topics.ts). A question's topic is the first entry whose pattern (a case-insensitive regex) matches its slide's title: the first 140 characters of the slide's text in private/pipeline/COP3530/docs.json. Slides with no text title (image-only titles, bullets only) are listed by hand in untitled. Then merges are applied in order while there are more than max topics. No model is called.",
+ "min": 8,
+ "max": 10,
+ "topics": [
+  { "topic": "Merge sort", "patterns": ["^Merge (?:Sort|Pseudocode)"] },
+  { "topic": "Quick sort", "patterns": ["^Quick ?Sort"] },
+  { "topic": "Bubble/Insertion/Selection sort", "patterns": ["\\b(?:Bubble|Insertion|Selection) Sort\\b"] },
+  { "topic": "Load factor & rehashing", "patterns": ["\\bLoad Factors?\\b", "\\bRehashing\\b"] },
+  { "topic": "C++ maps", "patterns": ["^C\\+\\+ (?:unordered_)?map\\b"] },
+  { "topic": "Paths & cycles", "patterns": ["^Graph (?:Paths|Cycles)\\b", "^Graph: Terminology (?:Simple )?(?:Path|Cycle)\\b"] },
+  { "topic": "Graph terminology", "patterns": ["^Graph: Terminology", "^Directed Graphs\\b"] },
+  { "topic": "Dense vs sparse", "patterns": ["^Dense vs Sparse"] },
+  { "topic": "Graph problems", "patterns": ["^Graph Problems\\b"] },
+  { "topic": "Graph API", "patterns": ["^Graph API\\b"] },
+  { "topic": "Edge list", "patterns": ["^Edge List\\b"] },
+  { "topic": "Adjacency matrix", "patterns": ["\\badjacency matrix\\b"] }
+ ],
+ "untitled": [
+  { "deck": "Discussion 8 - Sorting", "page": 76, "topic": "Quick sort", "why": "no title: starts 'Input: {1, 0, 1, 1, 0, 0, 1}'; the one-pass 0s/1s partition, in the quicksort part of the deck" },
+  { "deck": "7 - Sets, Maps, HashTables", "page": 42, "topic": "Load factor & rehashing", "why": "title is an image; the text is the load factor definition" },
+  { "deck": "7 - Sets, Maps, HashTables", "page": 63, "topic": "Load factor & rehashing", "why": "title is an image; the text is a rehashing walk-through" },
+  { "deck": "7 - Sets, Maps, HashTables", "page": 70, "topic": "Hash functions & collisions", "why": "title is an image; an insert walk-through where ac and e collide" },
+  { "deck": "7 - Sets, Maps, HashTables", "page": 72, "topic": "Hash functions & collisions", "why": "title is an image; an insert walk-through with H(key) = sum of ASCII" },
+  { "deck": "7 - Sets, Maps, HashTables", "page": 78, "topic": "Quadratic probing", "why": "title is an image; the probe sequence +1, +4 (quadratic)" },
+  { "deck": "7 - Sets, Maps, HashTables", "page": 9, "topic": "C++ maps", "why": "no title line: a table comparing std::set and std::unordered_set (the C++ hash containers)" },
+  { "deck": "Discussion 9 - Sets, Maps, and Hash Tables", "page": 9, "topic": "Load factor & rehashing", "why": "no title line: bullets on the load factor growing and resizing" }
+ ],
+ "merges": [
+  { "from": ["Dense vs sparse"], "into": "Graph terminology" },
+  { "from": ["Graph problems", "Graph API"], "into": "Graph problems & API" },
+  { "from": ["Hash functions & collisions", "Quadratic probing"], "into": "Hash functions & probing" },
+  { "from": ["Graph problems & API"], "into": "Graph terminology" },
+  { "from": ["Paths & cycles"], "into": "Graph terminology" }
+ ]
+}

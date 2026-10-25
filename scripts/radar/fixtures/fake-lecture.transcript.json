@@ -1,0 +1,18 @@
+{
+  "source": "zoom",
+  "recordingUrl": "https://example.invalid/rec/play/fake",
+  "title": "Fake lecture for radar tests",
+  "recordedAt": null,
+  "durationSec": 200,
+  "segments": [
+    { "start": 0.0, "end": 10.0, "speaker": "Lecturer A", "text": "Good morning, today we talk about stacks and queues." },
+    { "start": 10.0, "end": 25.0, "speaker": "Lecturer A", "text": "A stack is last in, first out. This will be on the exam, so write it down." },
+    { "start": 25.0, "end": 40.0, "speaker": "Student B", "text": "Is this important for the quiz?" },
+    { "start": 40.0, "end": 55.0, "speaker": "Lecturer A", "text": "Yes. A common mistake is mixing up push and enqueue." },
+    { "start": 55.0, "end": 70.0, "speaker": "Lecturer A", "text": "Students always get the empty case wrong." },
+    { "start": 70.0, "end": 100.0, "speaker": "Lecturer A", "text": "Now let's look at an array based queue with a circular buffer." },
+    { "start": 100.0, "end": 130.0, "speaker": "Lecturer A", "text": "Make sure you know how the head index wraps around. I'll ask about this on the quiz." },
+    { "start": 130.0, "end": 160.0, "speaker": null, "text": "You need to know the big O of every operation." },
+    { "start": 160.0, "end": 200.0, "speaker": "Lecturer A", "text": "That is all for today. See you on Thursday." }
+  ]
+}

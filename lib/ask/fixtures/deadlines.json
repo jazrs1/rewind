@@ -1,0 +1,11 @@
+{
+  "course": "COP3530",
+  "deadlines": [
+    { "id": "cq7", "title": "Conceptual Quiz 7 - Hashing", "kind": "quiz", "at": "2026-10-23T23:59:00-04:00", "source": "Canvas due date" },
+    { "id": "pq6", "title": "Programming Quiz 6 - Hash Map", "kind": "programming-quiz", "at": "2026-10-27T23:59:00-04:00", "source": "Canvas due date" },
+    { "id": "cq8", "title": "Conceptual Quiz 8 - Graphs 1", "kind": "quiz", "at": "2026-10-30T23:59:00-04:00", "source": "Canvas due date" },
+    { "id": "cq9", "title": "Conceptual Quiz 9 - Graphs 2", "kind": "quiz", "at": "2026-11-06T23:59:00-05:00", "source": "Announcement" },
+    { "id": "exam-2", "title": "Exam 2", "kind": "exam", "at": "2026-11-18T20:30:00-05:00", "source": "Announcement" },
+    { "id": "final", "title": "Final Exam", "kind": "exam", "at": null, "source": "Syllabus" }
+  ]
+}

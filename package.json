@@ -1,0 +1,50 @@
+{
+  "name": "rewind",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev -H 127.0.0.1",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "next typegen && tsc --noEmit",
+    "lint": "eslint",
+    "test": "vitest run",
+    "test:worker": "node extension/test/pagination.test.js && node extension/test/bridge.test.js && node extension/test/popup.test.js && node extension/zoom/test/parse.test.js && node extension/zoom/test/player.test.js && node extension/zoom/test/embed.test.js && node scripts/radar/test.mjs && python3 -m unittest scripts/deploy/scan_test.py",
+    "check": "npm run typecheck && npm run lint && npm run test && npm run test:worker",
+    "spike:models": "node --env-file=.env.local scripts/spike/models.ts",
+    "spike:parse": "node scripts/spike/parse.ts",
+    "spike:match": "node --env-file=.env.local scripts/spike/match.ts",
+    "spike:compare": "node --env-file=.env.local scripts/spike/compare.ts",
+    "spike:score": "node scripts/spike/score.ts",
+    "spike:seed": "node --env-file-if-exists=.env.local scripts/spike/seed.ts",
+    "spike:emphasis": "node --env-file=.env.local scripts/spike/emphasis.ts",
+    "eval:exam-template": "node scripts/eval/exams.ts --template",
+    "score:exams": "node scripts/eval/exams.ts",
+    "pipeline": "node --env-file-if-exists=.env.local scripts/pipeline/run.ts",
+    "e2e": "playwright test",
+    "lint:design": "node scripts/design/lint.ts && playwright test e2e/design-lint.spec.ts"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.133.0",
+    "@clerk/nextjs": "^7.9.20",
+    "@google/genai": "^2.31.0",
+    "katex": "0.18.11",
+    "next": "^16.4.3",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "unpdf": "^1.9.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.1",
+    "@tailwindcss/turbopack": "^4.3.3",
+    "@types/node": "^24.19.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.4.3",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.9.3",
+    "vitest": "^5.0.5"
+  }
+}

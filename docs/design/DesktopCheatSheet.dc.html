@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Rewind cheat sheet builder</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&amp;family=Caveat:wght@600;700&amp;family=Atkinson+Hyperlegible:wght@400;700&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 1280px; height: 840px; box-sizing: border-box; background: #1E2B30; color: #F3E9D2; font-family: 'Atkinson Hyperlegible', sans-serif; padding: 32px 56px; display: flex; gap: 40px">
+  <section style="flex: 0 0 380px; display: flex; flex-direction: column; gap: 18px">
+    <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 22px">Rewind</div>
+    <h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 44px; line-height: 1; letter-spacing: -1.5px">{{title}}</h1>
+    <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px 14px; border-radius: 10px; background: #2A3A40">
+      <span style="font-size: 13px; color: #9FA7A3">Kapoor's announcement, Week 10</span>
+      <span style="font-size: 15px; line-height: 1.45">"multiple choice questions and one sheet notes allowed"</span>
+      <span style="font-size: 13px; color: #9FA7A3; margin-top: 6px">{{ruleLine}}</span>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <div style="font-size: 14px; font-weight: 700">What goes on it</div>
+      <label style="display: flex; align-items: center; gap: 12px; min-height: 48px; padding: 0 14px; border-radius: 10px; background: #2A3A40; font-size: 15px">
+        <input type="checkbox" checked="checked" style="width: 20px; height: 20px; accent-color: #FA4616"></input>
+        <span style="flex: 1">Hash tables: probing and load factor</span><span style="font-size: 13px; color: #FFB08F">weakest</span>
+      </label>
+      <label style="display: flex; align-items: center; gap: 12px; min-height: 48px; padding: 0 14px; border-radius: 10px; background: #2A3A40; font-size: 15px">
+        <input type="checkbox" checked="checked" style="width: 20px; height: 20px; accent-color: #FA4616"></input>
+        <span style="flex: 1">Sorting: stability and runtimes</span><span style="font-size: 13px; color: #C9C3B3">shaky</span>
+      </label>
+      <label style="display: flex; align-items: center; gap: 12px; min-height: 48px; padding: 0 14px; border-radius: 10px; background: #2A3A40; font-size: 15px">
+        <input type="checkbox" checked="checked" style="width: 20px; height: 20px; accent-color: #FA4616"></input>
+        <span style="flex: 1">Sets vs maps in the STL</span><span style="font-size: 13px; color: #C9C3B3">shaky</span>
+      </label>
+      <label style="display: flex; align-items: center; gap: 12px; min-height: 48px; padding: 0 14px; border-radius: 10px; border: 1.5px solid #3A474C; font-size: 15px; color: #C9C3B3">
+        <input type="checkbox" style="width: 20px; height: 20px; accent-color: #FA4616"></input>
+        <span style="flex: 1">Heaps</span><span style="font-size: 13px">you know this</span>
+      </label>
+    </div>
+    <div style="font-size: 14px; color: #9FA7A3; line-height: 1.5">{{rankNote}}</div>
+
+    <div style="margin-top: auto; display: flex; flex-direction: column; gap: 10px">
+      <sc-if value="{{handwritten}}" hint-placeholder-val="{{ true }}">
+        <div style="display: flex; flex-direction: column; gap: 10px">
+          <button style="min-height: 56px; border-radius: 10px; border: none; background: #FA4616; color: #1E2B30; font: 700 18px 'Atkinson Hyperlegible', sans-serif">Print the plan to copy from</button>
+          <button style="min-height: 48px; border-radius: 10px; border: 2px solid #F3E9D2; background: transparent; color: #F3E9D2; font: 700 16px 'Atkinson Hyperlegible', sans-serif">Check my handwritten sheet</button>
+          <div style="font-size: 13px; color: #C9C3B3">Snap a photo when you're done and Rewind flags anything missing or wrong, against the slides.</div>
+        </div>
+      </sc-if>
+      <sc-if value="{{printed}}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; flex-direction: column; gap: 10px">
+          <button style="min-height: 56px; border-radius: 10px; border: none; background: #FA4616; color: #1E2B30; font: 700 18px 'Atkinson Hyperlegible', sans-serif">Print my sheet</button>
+          <div style="display: flex; justify-content: space-between; font-size: 13px; color: #C9C3B3"><span>Fits the allowed size</span><span>Letter, both sides</span></div>
+        </div>
+      </sc-if>
+    </div>
+  </section>
+
+  <section aria-label="Sheet preview" style="flex: 1; display: flex; justify-content: center; align-items: flex-start; min-width: 0">
+    <div style="width: 600px; height: 776px; box-sizing: border-box; background: #E9EDE4; color: #16241C; border-radius: 4px; padding: 28px 30px; display: flex; flex-direction: column; gap: 12px; font-family: 'Source Serif 4', serif">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1.5px solid #24573F; padding-bottom: 6px">
+        <span style="font-weight: 600; font-size: 19px">{{sheetTitle}}</span>
+        <span style="font-family: 'Atkinson Hyperlegible', sans-serif; font-size: 11px; color: #24573F">{{sheetNote}}</span>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 20px; flex: 1; min-height: 0">
+        <div style="display: flex; flex-direction: column; gap: 5px">
+          <div style="font-weight: 600; font-size: 14px; color: #24573F">Hash tables</div>
+          <div style="font-size: 12px; line-height: 1.45">Load factor = n / table size. [Rule from the slide on when to rehash.]</div>
+          <div style="font-size: 12px; line-height: 1.45">Linear probing: [step]. Quadratic: [step]. Clustering: [one line].</div>
+          <div style="font-size: 12px; line-height: 1.45">Chaining: average search [runtime].</div>
+          <div style="font-family: 'Atkinson Hyperlegible', sans-serif; font-size: 10px; color: #4E6B58">7 - Sets, Maps, HashTables, slides [N] to [N]</div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 5px">
+          <div style="font-weight: 600; font-size: 14px; color: #24573F">Probing trace</div>
+          <div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); border: 1px solid #24573F">
+            <sc-for list="{{slots}}" as="t" hint-placeholder-count="7"><div style="height: 26px; border-right: 1px solid #9DB39F; display: flex; align-items: center; justify-content: center; font-size: 12px">{{t.v}}</div></sc-for>
+          </div>
+          <div style="font-size: 12px; line-height: 1.45">[Worked example from Discussion 9, step by step.]</div>
+          <div style="font-family: 'Atkinson Hyperlegible', sans-serif; font-size: 10px; color: #4E6B58">Discussion 9, problem [N]</div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 5px">
+          <div style="font-weight: 600; font-size: 14px; color: #24573F">Sorting at a glance</div>
+          <div style="display: grid; grid-template-columns: 1.3fr 1fr 1fr 0.8fr; font-size: 11px; border-top: 1px solid #24573F">
+            <span style="padding: 3px 0; font-weight: 600">Sort</span><span style="padding: 3px 0; font-weight: 600">Best</span><span style="padding: 3px 0; font-weight: 600">Worst</span><span style="padding: 3px 0; font-weight: 600">Stable</span>
+            <span>Insertion</span><span>[ ]</span><span>[ ]</span><span>[ ]</span>
+            <span>Merge</span><span>[ ]</span><span>[ ]</span><span>[ ]</span>
+            <span>Quick</span><span>[ ]</span><span>[ ]</span><span>[ ]</span>
+            <span>Heap</span><span>[ ]</span><span>[ ]</span><span>[ ]</span>
+          </div>
+          <div style="font-family: 'Atkinson Hyperlegible', sans-serif; font-size: 10px; color: #4E6B58">6 - Sorting, slide [N]</div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 5px">
+          <div style="font-weight: 600; font-size: 14px; color: #24573F">Sets vs maps</div>
+          <div style="font-size: 12px; line-height: 1.45">set: [what it stores, ordering]. unordered_set: [backing structure].</div>
+          <div style="font-size: 12px; line-height: 1.45">map vs unordered_map: [runtime of find, ordering].</div>
+          <div style="font-family: 'Atkinson Hyperlegible', sans-serif; font-size: 10px; color: #4E6B58">7 - Sets, Maps, HashTables, slide [N]</div>
+        </div>
+        <div style="grid-column: span 2; display: flex; flex-direction: column; gap: 5px; padding: 10px 12px; border: 1.5px solid #24573F; border-radius: 3px">
+          <div style="font-weight: 600; font-size: 14px; color: #24573F">Mistakes you've made before</div>
+          <div style="font-size: 12px; line-height: 1.45">[Short line for each topic you missed in practice, in your own words from the tutor]</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"rule":{"editor":"enum","options":["handwritten","printed"],"default":"handwritten"},"$preview":{"width":1280,"height":840}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const printed = (this.props.rule ?? 'handwritten') === 'printed';
+    return {
+      slots: ['0', '1', '2', '3', '4', '5', '6'].map((v) => ({ v })),
+      printed,
+      handwritten: !printed,
+      title: printed ? 'Your CQ7 sheet' : 'Plan your CQ7 sheet',
+      ruleLine: printed ? 'Printed sheets allowed, from [where the rule was found, with the quote]' : 'Handwritten only, from [syllabus or lecture, with the quote]',
+      rankNote: printed ? 'Ranked from your Canvas grades and practice. Every block comes from the slides and cites them.' : 'Ranked from your Canvas grades and practice. Rewind plans what fits on one page; you write it by hand, which is good practice on its own.',
+      sheetTitle: printed ? 'COP3530, CQ7 notes' : 'Plan for your handwritten CQ7 sheet',
+      sheetNote: printed ? 'Built by Rewind from your course' : 'One page, both sides, about this much space each'
+    };
+  }
+}
+</script>
+</body>
+</html>

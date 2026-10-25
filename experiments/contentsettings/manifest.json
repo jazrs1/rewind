@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "Rewind contentSettings probe (experiment, T10)",
+  "version": "0.0.1",
+  "description": "Experiment only. Tests whether one click can add the third-party-cookie exception that lets the Rewind app embed a Zoom recording. Not part of the shipped extension.",
+  "permissions": ["contentSettings"],
+  "background": {
+    "service_worker": "sw.js"
+  },
+  "action": {
+    "default_title": "Rewind: allow embedded Zoom (experiment)",
+    "default_popup": "popup.html"
+  }
+}

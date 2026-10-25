@@ -1,0 +1,17 @@
+[
+  { "phrase": "on the exam", "kind": "exam", "pattern": "\\b(?:on|in) (?:the|your|this|our|an?) (?:exam|test|final|midterm)s?\\b" },
+  { "phrase": "on the quiz", "kind": "exam", "pattern": "\\b(?:on|in) (?:the|your|this|our|a|next) (?:week'?s )?quiz(?:zes)?\\b" },
+  { "phrase": "will be tested", "kind": "exam", "pattern": "\\b(?:will|would|could|might|is going to|are going to|gonna) be (?:tested|tested on|asked)\\b" },
+  { "phrase": "you need to know", "kind": "importance", "pattern": "\\byou (?:need|have|got|want) to (?:know|understand|remember)\\b|\\byou(?:'ve| have)? gotta (?:know|understand|remember)\\b" },
+  { "phrase": "make sure you know", "kind": "importance", "pattern": "\\bmake sure (?:that )?you (?:know|understand|remember|can)\\b" },
+  { "phrase": "important", "kind": "importance", "pattern": "\\b(?:very |really |super |extremely )?important\\b" },
+  { "phrase": "common mistake", "kind": "common-mistake", "pattern": "\\bcommon (?:mistake|error|pitfall|misconception)s?\\b" },
+  { "phrase": "students always get", "kind": "common-mistake", "pattern": "\\b(?:students|people|you guys|everyone|a lot of you) (?:always|often|usually|tend to) (?:get|mess|mix|forget|confuse)\\b" },
+  { "phrase": "I will ask", "kind": "exam", "pattern": "\\bI(?: will|'ll| am going to|'m going to|'m gonna| might| may| could) (?:ask|test|put)\\b" },
+  { "phrase": "remember this", "kind": "importance", "pattern": "\\bremember (?:this|that)\\b" },
+  { "phrase": "if you recall", "kind": "recall", "pattern": "\\bif you recall\\b" },
+  { "phrase": "interview question", "kind": "interview", "pattern": "\\b(technical\\s+)?interview questions?\\b" },
+  { "phrase": "ask in exams", "kind": "exam", "pattern": "\\b(exam question|ask in exams)\\b" },
+  { "phrase": "take away from this", "kind": "importance", "pattern": "\\b(take away from this|takeaway from this)\\b" },
+  { "phrase": "you should know", "kind": "importance", "pattern": "\\byou should know\\b" }
+]

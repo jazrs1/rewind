@@ -1,0 +1,381 @@
+/* The popup in the site's design system (app/globals.css, app/elevation.css): the deck surface, a raised card, the
+   action orange for the one primary, Bricolage Grotesque for the name, Atkinson Hyperlegible for text, Caveat only for
+   numbers. Every text colour is at least 4.5:1 on its background. Fonts are bundled (SIL Open Font License), never
+   fetched: the popup loads nothing from the network. */
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  font-weight: 700 800;
+  font-display: block;
+  src: url("fonts/bricolage-grotesque-latin.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Atkinson Hyperlegible";
+  font-weight: 400;
+  font-display: block;
+  src: url("fonts/atkinson-hyperlegible-400-latin.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Atkinson Hyperlegible";
+  font-weight: 700;
+  font-display: block;
+  src: url("fonts/atkinson-hyperlegible-700-latin.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Caveat";
+  font-weight: 400 700;
+  font-display: block;
+  src: url("fonts/caveat-latin.woff2") format("woff2");
+}
+
+:root {
+  --deck: #1e2b30;
+  --deck-raised: #2a3a40;
+  --deck-sunk: #172226;
+  --deck-line: #808d93;
+  --label: #f3e9d2;
+  --label-muted: #c9c3b3;
+  --peach: #ffb08f;
+  --action: #fa4616;
+  --ink: #16241c;
+  --tape-1: #3d6fd9;
+  --tape-2: #f26b3a;
+  --tape-3: #e9b43c;
+  --tape-4: #7fc8a9;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 360px;
+  margin: 0;
+  background: var(--deck);
+  color: var(--label);
+  font: 400 15px/1.4 "Atkinson Hyperlegible", system-ui, sans-serif;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 0;
+  padding: 16px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, var(--deck-raised), var(--deck));
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.06), 0 1px 2px rgb(0 0 0 / 0.35);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.head img {
+  flex: none;
+  position: relative;
+  top: 1px;
+}
+h1 {
+  margin: 0;
+  font: 800 22px/1 "Bricolage Grotesque", system-ui, sans-serif;
+  letter-spacing: -0.5px;
+}
+.sub {
+  margin: 2px 0 0;
+  color: var(--label-muted);
+  font-size: 13px;
+}
+
+.state {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+[hidden] {
+  display: none !important;
+}
+p {
+  margin: 0;
+}
+.muted {
+  color: var(--label-muted);
+}
+.small {
+  font-size: 13px;
+}
+.label {
+  color: var(--label-muted);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* The course list: a listbox of rows (code chip, name, term). The selected row has a 2 px orange ring. */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 248px;
+  margin: 0;
+  padding: 2px;
+  overflow-y: auto;
+  list-style: none;
+  border-radius: 10px;
+  outline: none;
+}
+.list:focus-visible {
+  box-shadow: 0 0 0 2px var(--label);
+}
+.row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 10px;
+  align-items: center;
+  min-height: 52px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: var(--deck-sunk);
+  cursor: pointer;
+  transition: translate 120ms var(--ease-out), box-shadow 120ms var(--ease-out);
+}
+.row:hover {
+  translate: 0 -2px;
+}
+.row[aria-selected="true"] {
+  box-shadow: 0 0 0 2px var(--action);
+}
+.code {
+  grid-row: 1 / span 2;
+  min-width: 68px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+}
+.code.t0 {
+  background: var(--tape-1);
+  color: #ffffff;
+}
+.code.t1 {
+  background: var(--tape-2);
+}
+.code.t2 {
+  background: var(--tape-3);
+}
+.code.t3 {
+  background: var(--tape-4);
+}
+.code.none {
+  background: #3a474c;
+  color: var(--label);
+}
+.name {
+  overflow: hidden;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.term {
+  overflow: hidden;
+  color: var(--label-muted);
+  font-size: 13px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.disclosure,
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 0 2px;
+  border: 0;
+  background: none;
+  color: var(--peach);
+  font: 700 15px/1.2 "Atkinson Hyperlegible", system-ui, sans-serif;
+  text-decoration: none;
+  cursor: pointer;
+  align-self: flex-start;
+}
+.disclosure {
+  color: var(--label-muted);
+}
+.disclosure[aria-expanded="true"] .chev {
+  display: inline-block;
+  rotate: 90deg;
+}
+.link:hover,
+.link:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Buttons: the site's system. Primary: action orange; secondary: a 2 px outline. 2 px lift on hover, .98 on press. */
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 20px;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  font: 700 16px/1.15 "Atkinson Hyperlegible", system-ui, sans-serif;
+  text-decoration: none;
+  cursor: pointer;
+  transition: translate 120ms var(--ease-out), scale 120ms var(--ease-out), box-shadow 120ms var(--ease-out);
+}
+.btn:not(:disabled):hover {
+  translate: 0 -2px;
+  box-shadow: 0 4px 10px rgb(0 0 0 / 0.3);
+}
+.btn:not(:disabled):active {
+  translate: 0 0;
+  scale: 0.98;
+  box-shadow: none;
+}
+.btn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.btn-primary {
+  width: 100%;
+  background: var(--action);
+  color: var(--ink);
+}
+.btn-secondary {
+  border-color: currentColor;
+  background: none;
+  color: var(--label);
+  align-self: flex-start;
+}
+.btn:focus-visible,
+.disclosure:focus-visible,
+.link:focus-visible,
+.row:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--label);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn:not(:disabled):hover,
+  .row:hover {
+    translate: none;
+  }
+}
+
+/* Exporting */
+.bar {
+  height: 10px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--deck-sunk);
+}
+.fill {
+  width: 6%;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--action);
+  transition: width 200ms var(--ease-out);
+}
+.bar.indeterminate .fill {
+  width: 30%;
+  animation: slide 1.2s var(--ease-out) infinite;
+}
+@keyframes slide {
+  from { translate: -100% 0; }
+  to { translate: 340% 0; }
+}
+.num {
+  font-family: "Caveat", "Atkinson Hyperlegible", cursive;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* Done */
+.done-title,
+.error-title,
+.empty-title {
+  font: 800 18px/1.25 "Bricolage Grotesque", system-ui, sans-serif;
+}
+.check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  margin-right: 4px;
+  border-radius: 999px;
+  background: var(--tape-4);
+  color: var(--ink);
+  font: 700 15px/1 "Atkinson Hyperlegible", system-ui, sans-serif;
+}
+.files,
+.notes,
+.chips {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.files li {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: var(--deck-sunk);
+}
+.files .fname {
+  font-weight: 700;
+  word-break: break-all;
+}
+.chips {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.chips li {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--deck-sunk);
+  font-size: 13px;
+  font-weight: 700;
+}
+.notes li {
+  color: var(--label-muted);
+  font-size: 13px;
+}
+details {
+  color: var(--label-muted);
+  font-size: 13px;
+}
+summary {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--label);
+  font-weight: 700;
+  cursor: pointer;
+}
+details ul {
+  margin: 0;
+  padding-left: 18px;
+}
+.empty {
+  align-items: flex-start;
+  padding: 8px 0 4px;
+}

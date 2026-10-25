@@ -1,0 +1,439 @@
+/* header styles (header-transport brief + addendum). Colours only as tokens; motion only on the motion tokens.
+   The demo's app header (components/demo/DemoHeader.tsx): a 64 px bar (60 px on a phone) and a 24 px note strip
+   under it, their content in a centred 1200 px column with side padding, so nothing touches the screen edge. */
+@theme static {
+  /* The header rail: a shade under the deck, with a hairline lip */
+  --color-rail: #1a272c;
+  --color-rail-lip: #33454c;
+  /* The segmented control's track */
+  --color-track: #142024;
+}
+
+/* In the components layer, so utilities (lg:hidden and the like) still win. */
+@layer components {
+.demo-header {
+  --bar-h: 60px;
+  position: relative;
+  z-index: 30;
+  flex: none;
+  background: var(--color-rail);
+  box-shadow: 0 1px 0 var(--color-rail-lip), 0 6px 16px -10px rgb(0 0 0 / 0.6);
+}
+@media (min-width: 1024px) {
+  .demo-header {
+    --bar-h: 64px;
+  }
+}
+
+.demo-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 1200px;
+  height: var(--bar-h);
+  margin-inline: auto;
+  padding-inline: 16px;
+}
+@media (min-width: 640px) {
+  .demo-bar {
+    padding-inline: 24px;
+  }
+}
+@media (min-width: 1024px) {
+  .demo-bar {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 24px;
+    padding-inline: 32px;
+  }
+}
+
+/* Left: the wordmark, the course under it (beside it on wide screens) */
+.demo-brand {
+  display: inline-flex;
+  min-height: 44px;
+  flex: 1 1 auto;
+  min-width: 0;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+  justify-self: start;
+  border-radius: 8px;
+  text-decoration: none;
+}
+.demo-brand-course {
+  font-size: 13px;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+@media (min-width: 1280px) {
+  .demo-brand {
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+  }
+  .demo-brand-course {
+    padding-top: 4px;
+    font-size: 14px;
+  }
+}
+
+/* Center: the segmented control */
+.demo-tabs {
+  align-items: center;
+  gap: 2px;
+  padding: 4px;
+  border-radius: 999px;
+  background: var(--color-track);
+  box-shadow: inset 0 1px 3px rgb(0 0 0 / 0.55), 0 1px 0 var(--color-rail-lip);
+}
+.demo-tab,
+.demo-set {
+  display: inline-flex;
+  min-height: 44px;
+  min-width: 44px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding-inline: 18px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-label-muted);
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    translate var(--dur-1) var(--ease-out),
+    scale var(--dur-1) var(--ease-out),
+    background-color var(--dur-1) var(--ease-out),
+    color var(--dur-1) var(--ease-out);
+}
+.demo-tab:hover,
+.demo-set:hover {
+  translate: 0 -2px;
+  color: var(--color-label);
+}
+.demo-tab[aria-current="page"] {
+  background: var(--color-label);
+  color: var(--color-deck);
+  box-shadow: 0 1px 0 rgb(255 255 255 / 0.25) inset, 0 2px 6px -2px rgb(0 0 0 / 0.6);
+}
+/* The Practice tab's lecture switcher, inside the same track next to it. Opening Practice unrolls it out of the
+   pill like tape off a spool: its one grid column grows from nothing (--dur-3) and each tab fades and slides in a
+   --stagger after the last, so Course tape and Ask glide over. Leaving Practice rolls it back up (--dur-2), the
+   right-hand tab first. A page that loads on Practice shows it already out (no animation). */
+.demo-sets-reel {
+  display: inline-grid;
+  grid-template-columns: minmax(0, 1fr);
+  margin-inline: 2px 6px;
+}
+.demo-sets-reel[data-sets-reel="opening"] {
+  overflow: hidden;
+  animation: reel-unroll var(--dur-3) var(--ease-out);
+}
+.demo-sets-reel[data-sets-reel="closing"] {
+  overflow: hidden;
+  animation: reel-unroll var(--dur-2) var(--ease-in-out) reverse forwards;
+}
+/* From no width at all: the margins go too (-2px takes back the track's gap). */
+@keyframes reel-unroll {
+  from {
+    grid-template-columns: minmax(0, 0fr);
+    margin-inline: -2px 0;
+  }
+}
+.demo-sets-reel[data-sets-reel="opening"] .demo-set {
+  animation: reel-tab var(--dur-2) var(--ease-out) calc(min(var(--i, 0), 2) * var(--stagger)) backwards;
+}
+.demo-sets-reel[data-sets-reel="closing"] .demo-set {
+  animation: reel-tab var(--dur-1) var(--ease-in-out) calc(min(var(--j, 0), 2) * (var(--dur-2) - var(--dur-1)) / 2) reverse forwards;
+}
+@keyframes reel-tab {
+  from {
+    opacity: 0;
+    translate: -12px 0;
+  }
+}
+.demo-sets {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding-inline: 6px 0;
+  border-left: 1px solid var(--color-rail-lip);
+}
+.demo-set {
+  padding-inline: 12px;
+  font-weight: 400;
+}
+.demo-set[aria-current="page"] {
+  background: var(--color-deck-raised);
+  color: var(--color-label);
+  font-weight: 700;
+  box-shadow: inset 0 0 0 1.5px var(--color-peach);
+}
+
+/* Right: the account button (and the phone's Menu button) */
+.demo-right {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  justify-self: end;
+}
+.demo-icon-button {
+  display: inline-flex;
+  height: 44px;
+  width: 44px;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  color: var(--color-label);
+  transition: translate var(--dur-1) var(--ease-out), scale var(--dur-1) var(--ease-out), background-color var(--dur-1) var(--ease-out);
+}
+.demo-icon-button:hover {
+  translate: 0 -2px;
+  background: var(--color-deck-raised);
+}
+
+/* The account button: the signed-in initial in a cream disc */
+.account-avatar {
+  position: relative;
+  display: inline-flex;
+  height: 44px;
+  width: 44px;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--color-label);
+  color: var(--color-deck);
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 800;
+  box-shadow: 0 0 0 2px var(--color-rail), 0 0 0 4px var(--color-rail-lip);
+  transition: translate var(--dur-1) var(--ease-out), scale var(--dur-1) var(--ease-out), box-shadow var(--dur-1) var(--ease-out);
+}
+.account-avatar:hover,
+.account-avatar[aria-expanded="true"] {
+  box-shadow: 0 0 0 2px var(--color-rail), 0 0 0 4px var(--color-peach);
+}
+.account-avatar:hover {
+  translate: 0 -2px;
+}
+/* Saving is down: a small light on the disc (the status line in the menu says what) */
+.account-avatar[data-alert]::after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  height: 12px;
+  width: 12px;
+  border-radius: 999px;
+  background: var(--color-action);
+  box-shadow: 0 0 0 2px var(--color-rail);
+}
+
+/* The account menu and the test sign-in form: a popover under the button, inside the column */
+.account-pop {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 16px;
+  left: 16px;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 14px;
+  border: 1px solid var(--color-rail-lip);
+  background: var(--color-deck-raised);
+  color: var(--color-label);
+  box-shadow: 0 18px 40px -12px rgb(0 0 0 / 0.7), inset 0 1px 0 rgb(255 255 255 / 0.05);
+  animation: pop-in var(--dur-2) var(--ease-out);
+  transform-origin: top right;
+}
+@media (min-width: 640px) {
+  .account-pop {
+    left: auto;
+    right: 24px;
+    width: 360px;
+  }
+}
+@media (min-width: 1024px) {
+  .account-pop {
+    right: 32px;
+  }
+}
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+.account-pop-rule {
+  height: 1px;
+  margin: 0;
+  border: 0;
+  background: var(--color-rail-lip);
+}
+
+/* The permission note: a slim strip under the bar, 13 px, on every demo screen */
+.demo-note-strip {
+  border-top: 1px solid rgb(0 0 0 / 0.25);
+  background: var(--color-deck);
+}
+.demo-note {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4px 16px;
+  font-size: 13px;
+  line-height: 16px;
+  color: var(--color-label-muted);
+}
+@media (min-width: 640px) {
+  .demo-note {
+    padding-inline: 24px;
+  }
+}
+@media (min-width: 1024px) {
+  .demo-note {
+    padding-inline: 32px;
+  }
+}
+
+/* The phone's menu sheet: drops from the top, rows 48 px */
+.demo-sheet {
+  margin: 0;
+  width: 100%;
+  max-width: none;
+  max-height: 100dvh;
+  padding: 0 16px 20px;
+  border: 0;
+  border-radius: 0 0 18px 18px;
+  background: var(--color-deck-raised);
+  color: var(--color-label);
+  box-shadow: 0 18px 40px -12px rgb(0 0 0 / 0.7);
+}
+.demo-sheet[open] {
+  animation: sheet-down var(--dur-3) var(--ease-out);
+}
+.demo-sheet::backdrop {
+  background: rgb(0 0 0 / 0.55);
+}
+@keyframes sheet-down {
+  from {
+    transform: translateY(-24px);
+    opacity: 0;
+  }
+}
+.demo-sheet-head {
+  display: flex;
+  height: 60px;
+  align-items: center;
+  justify-content: space-between;
+}
+.demo-sheet-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.demo-sheet-sets {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0 0 4px 16px;
+  padding: 0 0 0 12px;
+  list-style: none;
+  border-left: 1px solid var(--color-rail-lip);
+}
+.demo-row {
+  display: flex;
+  min-height: 48px;
+  align-items: center;
+  border-radius: 12px;
+  padding-inline: 14px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-label);
+  text-decoration: none;
+  transition: translate var(--dur-1) var(--ease-out), scale var(--dur-1) var(--ease-out);
+}
+.demo-row-sub {
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--color-label-muted);
+}
+.demo-row[aria-current="page"] {
+  background: var(--color-label);
+  color: var(--color-deck);
+  font-weight: 700;
+}
+.demo-row-sub[aria-current="page"] {
+  background: var(--color-deck);
+  color: var(--color-label);
+  box-shadow: inset 0 0 0 1.5px var(--color-peach);
+}
+}
+
+/* The screen under the header fills what's left of the viewport instead of a whole one (its own min-h-dvh). */
+.demo-main {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-height: 0;
+}
+.demo-main > .min-h-dvh {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+/* The header's full height (bar + note strip) on desktop, for screens that size themselves to the viewport
+   (e.g. calc(100dvh - var(--demo-header-h, 0px))). On a phone the strip can wrap, so it isn't set there. */
+@media (min-width: 1024px) {
+  :root:has([data-demo-header]) {
+    --demo-header-h: 89px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .demo-tab,
+  .demo-set,
+  .demo-icon-button,
+  .account-avatar,
+  .demo-row {
+    transition: none !important;
+  }
+  .demo-tab:hover,
+  .demo-set:hover,
+  .demo-icon-button:hover,
+  .account-avatar:hover {
+    translate: none;
+  }
+  .account-pop,
+  .demo-sheet[open],
+  .demo-sets-reel,
+  .demo-sets-reel .demo-set {
+    animation: none !important;
+  }
+}
+
+/* Phone: the account control sits at the foot of the Menu sheet, under the tabs. */
+.demo-sheet-account {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--color-deck-line);
+}
+
+/* A lecture tab: its topic first, the date smaller and muted; on the phone sheet the full deck title under it. */
+.demo-set-date {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--color-label-muted);
+}
+.demo-set-deck {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--color-label-muted);
+}

@@ -1,0 +1,47 @@
+# secrets
+.env
+.env*
+!.env.example
+
+# real course data (never public); no slash so the worker's symlink matches too
+private/
+private
+
+# Gemini response cache (may hold course text)
+.cache/
+
+# dependencies and builds
+node_modules/
+node_modules
+.next/
+out/
+dist/
+build/
+extension/dist/
+*.zip
+# ...but not the extension download's route (a folder named like a zip file)
+!app/extension/rewind-extension.zip/
+
+# tools and OS
+.vercel/
+.DS_Store
+*.log
+coverage/
+playwright-report/
+test-results/
+
+# next.js / typescript
+*.tsbuildinfo
+next-env.d.ts
+*.pem
+
+# coordinator notes (local only)
+COORDINATOR.md
+
+# agent worktrees
+.claude/worktrees/
+.vercel
+
+# Python caches
+__pycache__/
+*.pyc

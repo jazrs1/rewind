@@ -1,0 +1,20 @@
+{
+  "source": "zoom",
+  "recordingUrl": "https://example.invalid/rec/play/fake2",
+  "title": "Fake lecture 2 for radar tests (professor's own wording)",
+  "recordedAt": null,
+  "durationSec": 165,
+  "segments": [
+    { "start": 0.0, "end": 15.0, "speaker": "Lecturer A", "text": "If you recall, a heap keeps the smallest key at the root." },
+    { "start": 15.0, "end": 30.0, "speaker": "Lecturer A", "text": "This is a classic technical interview question about heaps." },
+    { "start": 30.0, "end": 45.0, "speaker": "Lecturer A", "text": "Merging two heaps showed up as a past exam question." },
+    { "start": 45.0, "end": 60.0, "speaker": "Lecturer A", "text": "Building a heap in linear time is something we ask in exams." },
+    { "start": 60.0, "end": 75.0, "speaker": "Lecturer A", "text": "The takeaway from this is that insert costs log n." },
+    { "start": 75.0, "end": 90.0, "speaker": "Lecturer A", "text": "You should know how sift down works." },
+    { "start": 90.0, "end": 105.0, "speaker": "Lecturer A", "text": "I recall the name of that structure from last year." },
+    { "start": 105.0, "end": 120.0, "speaker": "Lecturer A", "text": "An interviewer once asked me about heaps." },
+    { "start": 120.0, "end": 135.0, "speaker": "Lecturer A", "text": "We take away the root and then fix the heap." },
+    { "start": 135.0, "end": 150.0, "speaker": "Lecturer A", "text": "Should you know every proof? Not for this class." },
+    { "start": 150.0, "end": 165.0, "speaker": "Student B", "text": "Is this a common interview question?" }
+  ]
+}
